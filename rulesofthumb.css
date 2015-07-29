@@ -1,10 +1,11 @@
 *{
 	margin-left:auto;
 	margin-right:auto;
+	text-align: center;
 }
 
 header{
-font: 28px Arial, sans-serif;
+	font: 28px Arial, sans-serif;
 }
 
 label{
@@ -44,7 +45,6 @@ button {
   background-color: #3C3C3C;
   color: white;
   font: 18px Arial, sans-serif;
-  text-align: center;
   
   /* outline text in popups.  Don't like this for now */
   /*
@@ -59,4 +59,5 @@ button {
 #footer {position: relative;
 	margin-top: -150px; /* negative value of footer height */
 	height: 150px;
-	clear:both;} 
+	clear:both;
+} 
