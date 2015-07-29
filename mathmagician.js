@@ -18,7 +18,7 @@ function mathmagic() {
 		result = Math.ceil(fsiya * 0.93)
 		gold.value = !isNaN(result) ? result : '';
 		if(fsiya<=693)
-			result=fsiya*.9;
+			result=Math.ceil(fsiya*.9);
 		else
 			// https://www.reddit.com/r/ClickerHeroes/comments/3823wt/mathematical_analysis_of_lategame_for_most_idle/
 			result=Math.ceil(1.15*Math.pow(Math.log(3.25*Math.pow(fsiya,2)),.4)*Math.pow(fsiya,.8));
