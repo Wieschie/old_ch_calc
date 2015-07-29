@@ -6,7 +6,7 @@ solo = document.getElementById('solo');
 
 var constantNumber = 2;
 
-siya.onchange = mathmagic
+siya.onkeyup = mathmagic
 
 function mathmagic() {
 	var fsiya = parseFloat(siya.value);
