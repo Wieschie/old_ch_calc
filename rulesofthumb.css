@@ -1,3 +1,8 @@
+*{
+	margin-left:auto;
+	margin-right:auto;
+}
+
 header{
 font: 28px Arial, sans-serif;
 }
@@ -47,3 +52,11 @@ button {
              #000 0px 0px 1px,   #000 0px 0px 1px,   #000 0px 0px 1px;
  */
 }
+
+#main {overflow:auto;
+	padding-bottom: 200px;}  /* must be same height as the footer */
+
+#footer {position: relative;
+	margin-top: -150px; /* negative value of footer height */
+	height: 150px;
+	clear:both;} 
