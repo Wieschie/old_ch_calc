@@ -1,0 +1,17 @@
+label{
+    display: inline-block;
+    float: left;
+    clear: left;
+    width: 45%;
+    text-align: right;
+	font: 20px Arial, sans-serif;
+}
+input {
+	display: inline-block;
+	float: left;
+	width: 200px;
+	font: 20px Arial, sans-serif;
+}
+button {
+	float: left;
+  }
