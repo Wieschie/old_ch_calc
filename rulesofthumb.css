@@ -9,16 +9,22 @@ label{
     width: 45%;
     text-align: right;
 	font: 20px Arial, sans-serif;
+	padding: 2px;
+	margin: 2px;
 }
 input {
 	display: inline-block;
 	float: left;
 	width: 200px;
 	font: 20px Arial, sans-serif;
+	padding: 2px;
+	margin: 2px;
 }
 button {
 	float: left;
 	font: 20px Arial, sans-serif;
+	padding: 2px;
+	margin: 2px;
 }
 
 #pup {
