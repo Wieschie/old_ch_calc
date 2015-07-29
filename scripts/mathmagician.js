@@ -1,27 +1,25 @@
 var siya = document.getElementById('siya'),
-bank = document.getElementById('bank'),
 morg = document.getElementById('morg'),
 gold = document.getElementById('gold'),
-solo = document.getElementById('solo');
-click = document.getElementById('click');
+solo = document.getElementById('solo'),
+click = document.getElementById('click'),
 jugg = document.getElementById('jugg');
 
-siya.onkeyup = mathmagic
+siya.onkeyup = mathmagic;
+
+$('body').on('change', '#morg_owned', function(){ 
+  if ($(this).is(':checked')) {
+    $('#soul_label').html('Morgulis:');
+  } else {
+	  $('#soul_label').html('Souls banked:');
+  }
+  morg_calc();
+});
 
 function mathmagic() {
 	var fsiya = parseFloat(siya.value);
-	
-		if(fsiya<100)
-			result = Math.ceil(Math.pow((fsiya+1),2)*1.1);
-		else
-			result = Math.ceil(Math.pow((fsiya+22),2)*1.1);
-		bank.value = !isNaN(result) ? result : '';
 		
-		if(fsiya<100)
-			result = Math.ceil(Math.pow((fsiya+1),2));
-		else
-			result = Math.ceil(Math.pow((fsiya+22),2));
-		morg.value = !isNaN(result) ? result : '';
+		morg_calc();
 	
 		result = Math.ceil(fsiya * 0.93)
 		gold.value = !isNaN(result) ? result : '';
@@ -40,6 +38,19 @@ function mathmagic() {
 		jugg.value = !isNaN(result) ? result : '';
 };
 
+function morg_calc() {
+	var fsiya = parseFloat(siya.value);
+	if(fsiya<100)
+			result = Math.ceil(Math.pow((fsiya+1),2));
+		else
+			result = Math.ceil(Math.pow((fsiya+22),2));
+		if($('#morg_owned').is(':checked'))
+			void(0);
+		else
+			result=Math.ceil(result*1.1);
+		morg.value = !isNaN(result) ? result : '';
+};
+
 function level_siya(add_levels) {
 	var level = parseInt(siya.value);
 	level += add_levels;
@@ -53,3 +64,4 @@ function mult_siya(m) {
 	siya.value = Math.ceil(level);
 	mathmagic();
 };
+

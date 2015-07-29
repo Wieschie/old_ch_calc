@@ -31,17 +31,16 @@
 	</header>
 	
 <div id='main'>
+
 	<label></label> <!-- align the buttons -->
 	<button onclick="level_siya(10)">+10</button>
 	<button onclick="level_siya(25)">+25</button>
 	<button onclick="level_siya(100)">+100</button>
 	<button onclick="mult_siya(1.1)">+10%</button><br>
-	<label>Siyalatas / Argaiv:</label> <input type="number" name="siya" id="siya" value="0" autofocus style="margin-bottom:20px">
-
-	
-	<label>Souls banked <a onclick = "void(0)" onmouseover="nhpup.popup('Use this number if you do not own Morgulis');">(<u>?</u>)</a>:</label> 
-		<input type="number" name="bank" id="bank" value="0" readonly><br>
-	<label>Morgulis:</label> <input type="number" name="morg" id="morg" value="0" readonly><br>
+	<label>Siyalatas / Argaiv:</label> <input type="number" name="siya" id="siya" value="0" autofocus>
+		<label>I own Morgulis <a onclick = "void(0)" onmouseover="nhpup.popup('Uncheck this if you do not own Morgulis');">(<u>?</u>)</a>:</label><input type="checkbox" id="morg_owned" checked
+			style="margin-bottom:20px;margin-top:5px;float:left;width:20px;height:20px">
+	<label id="soul_label">Morgulis:</label> <input type="number" name="morg" id="morg" value="0" readonly>
 	<label>Gold ancients:</label> <input type="number" name="gold" id="gold" value="0" readonly><br>
 	<label>Solomon:</label> <input type="number" name="solo" id="solo" value="0" readonly><br>
 	
