@@ -29,14 +29,14 @@ button {
   margin-top: 5px;
   width: 250px;
   border: 1px solid black;
-  background-color: #777;
+  background-color: #3C3C3C;
   color: white;
   font: 18px Arial, sans-serif;
   text-align: center;
   
-  /* this feels wrong */
+  /* outline text in popups.  Don't like this for now */
   /*
   text-shadow: #000 0px 0px 1px, #000 0px 0px 1px,   #000 0px 0px 1px,
              #000 0px 0px 1px,   #000 0px 0px 1px,   #000 0px 0px 1px;
-  -webkit-font-smoothing: antialiased; */
+ */
 }
