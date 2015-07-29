@@ -11,10 +11,16 @@ siya.onkeyup = mathmagic
 function mathmagic() {
 	var fsiya = parseFloat(siya.value);
 	
-		var result = Math.ceil(Math.pow((fsiya+1),2) * 1.1);
+		if(fsiya<100)
+			result = Math.ceil(Math.pow((fsiya+1),2)*1.1);
+		else
+			result = Math.ceil(Math.pow((fsiya+22),2)*1.1);
 		bank.value = !isNaN(result) ? result : '';
-	
-		result = Math.ceil(Math.pow((fsiya+1),2));
+		
+		if(fsiya<100)
+			result = Math.ceil(Math.pow((fsiya+1),2));
+		else
+			result = Math.ceil(Math.pow((fsiya+22),2));
 		morg.value = !isNaN(result) ? result : '';
 	
 		result = Math.ceil(fsiya * 0.93)

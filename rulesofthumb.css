@@ -27,6 +27,7 @@ button {
 	margin: 2px;
 }
 
+/* tooltips */
 #pup {
   position:absolute;
   z-index:200; /* aaaalways on top*/
