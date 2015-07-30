@@ -49,8 +49,11 @@
 	<label>I own Morgulis <a onclick="void(0)" onmouseover="nhpup.popup('Uncheck this if you do not own Morgulis');">(<u>?</u>)</a>:</label>
 		<input type="checkbox" id="morg_owned" checked>
 	<label id="soul_label">Morgulis:</label> <input type="number" name="morg" id="morg" value="0" readonly>
-	<label>Gold ancients <a onclick="void(0)" onmouseover="nhpup.popup('Libertas, Mammon, and Mimzee.');">(<u>?</u>)</a>:</label> <input type="number" name="gold" id="gold" value="0" readonly>
+	<label>Gold ancients <a onclick="void(0)" onmouseover="nhpup.popup('Libertas, Mammon, and Mimzee.');">(<u>?</u>)</a>:</label> 
+		<input type="number" name="gold" id="gold" value="0" readonly>
 	<label>Solomon:</label> <input type="number" name="solo" id="solo" value="0" readonly>
+	<label>Iris<a onclick="void(0)" onmouseover="nhpup.popup('This assumes all other ancients are even with Siya per the rules.  Use with caution');">(<u>?</u>)</a>:</label> 
+		<input type="number" name="iris" id="iris" value="0" readonly>
 	<label>Click ancients <a onclick = "void(0)" onmouseover="nhpup.popup('Bhaal, Frags, and Pluto. If you are going with an idle or hybrid build, it is not recommended to purchase any click ancients until Siyalatas is at least 1000');">(<u>?</u>)</a>:</label> 
 		<input type="number" name="click" id="click" value="0" readonly>
 	<label>Juggernaut:</label> <input type="number" name="jugg" id="jugg" value="0" readonly>
@@ -64,6 +67,10 @@ $$Morgulis = (Siya+1)^2$$
 </div>
 $$Gold\ ancients = .93 * Siya$$
 $$Solomon = 1.15 * \ln{(3.25 * Siya^2)}^{0.4} * Siya^{0.8}$$
+
+<a onclick="void(0)" onmouseover="nhpup.popup('This calculates a rough optimal zone, then subtracts 1000 and rounds to the nearest 3 or 8.');">
+$$Iris = 5*\lfloor(\frac{371 * \ln({Siya}) - 2075)}{5} + \frac{1}{2})\rfloor - 2$$</a>
+
 $$Click\ ancients = .5 * Siya$$
 $$Juggernaut = .1 * Siya$$
 </div>

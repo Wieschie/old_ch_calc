@@ -24,10 +24,14 @@ function mathmagic() {
 			result=Math.ceil(1.15*Math.pow(Math.log(3.25*Math.pow(fsiya,2)),.4)*Math.pow(fsiya,.8));
 		solo.value = !isNaN(result) ? result : '';
 		
-		result = Math.ceil(fsiya * 0.5)
+		result = Math.ceil((371 * Math.log(fsiya)) - 2075);
+		result = Math.max(5*Math.floor(result/5+.5) - 2,0);
+		$('#iris').val(!isNaN(result) ? result : '');
+		
+		result = Math.ceil(fsiya * 0.5);
 		click.value = !isNaN(result) ? result : '';
 		
-		result = Math.ceil(fsiya * 0.1)
+		result = Math.ceil(fsiya * 0.1);
 		jugg.value = !isNaN(result) ? result : '';
 };
 
