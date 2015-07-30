@@ -39,6 +39,12 @@ button {
 	margin: 2px;
 }
 
+#formula_button {
+	float: none;
+	font-size: 16px;
+	margin-bottom: 12px;
+}
+
 /* morg checkbox */
 #morg_owned {
 margin-bottom:20px;
@@ -72,6 +78,8 @@ height:20px
 	overflow:auto;
 	padding-bottom: 170px;
 }  
+
+
 
 .formulas{
 	display:none;

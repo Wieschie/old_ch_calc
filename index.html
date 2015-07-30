@@ -53,10 +53,9 @@
 	<label>Solomon:</label> <input type="number" name="solo" id="solo" value="0" readonly>
 	<label>Click ancients <a onclick = "void(0)" onmouseover="nhpup.popup('Bhaal, Frags, and Pluto. If you are going with an idle or hybrid build, it is not recommended to purchase any click ancients until Siyalatas is at least 1000');">(<u>?</u>)</a>:</label> 
 		<input type="number" name="click" id="click" value="0" readonly>
-	<label>Juggernaut:</label> <input type="number" name="jugg" id="jugg" value="0" readonly><br>
+	<label>Juggernaut:</label> <input type="number" name="jugg" id="jugg" value="0" readonly>
 	<label>Paste your save here <a onclick="void(0)" onmouseover="nhpup.popup('This is optional - you can still manually enter your Siyalatas level');">(<u>?</u>)</a>:</label> 
-		<input type="text" id="savegame"><br>
-	<button onclick='show_math()' id="formula_button">Show formulas.</button>
+		<input type="text" id="savegame">
 </div>
 
 <div class='formulas' id='formulas'>
@@ -69,7 +68,9 @@ $$Click\ ancients = .5 * Siya$$
 $$Juggernaut = .1 * Siya$$
 </div>
 
-<div id='footer'>Crappy calculator by /u/Wieschie. 
+<div id='footer'>
+	<button onclick='show_math()' id="formula_button">Show/hide formulas.</button><br>
+	Crappy calculator by /u/Wieschie. 
 	Thanks to /u/Awlcer (aka Nexus) and /u/Alchameth for help.  Thanks to /u/glitchypenguin and /u/Kragnir for doing the math.
 	<a href="https://github.com/wieschie/wieschie.github.io">Sauce here.</a>
 </div>
