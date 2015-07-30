@@ -6,15 +6,9 @@ click = document.getElementById('click'),
 jugg = document.getElementById('jugg');
 
 siya.onkeyup = mathmagic;
+$('#savegame').keyup(import_save);
 
-$('body').on('change', '#morg_owned', function(){ 
-  if ($(this).is(':checked')) {
-    $('#soul_label').html('Morgulis:');
-  } else {
-	  $('#soul_label').html('Souls banked:');
-  }
-  morg_calc();
-});
+$('body').on('change', '#morg_owned', morg_calc);
 
 function mathmagic() {
 	var fsiya = parseFloat(siya.value);
@@ -38,16 +32,23 @@ function mathmagic() {
 		jugg.value = !isNaN(result) ? result : '';
 };
 
+// sets the proper title and calculates values dependent on the user owning Morg
 function morg_calc() {
+	if ($('#morg_owned').is(':checked')) {
+		$('#soul_label').html('Morgulis:');
+	} else {
+		$('#soul_label').html('Souls banked:');
+	}
+	
 	var fsiya = parseFloat(siya.value);
 	if(fsiya<100)
-			result = Math.ceil(Math.pow((fsiya+1),2));
-		else
-			result = Math.ceil(Math.pow((fsiya+22),2));
-		if($('#morg_owned').is(':checked'))
-			void(0);
-		else
-			result=Math.ceil(result*1.1);
+		result = Math.ceil(Math.pow((fsiya+1),2));
+	else
+		result = Math.ceil(Math.pow((fsiya+22),2));
+		
+	if(!$('#morg_owned').is(':checked'))
+		result=Math.ceil(result*1.1);
+		
 		morg.value = !isNaN(result) ? result : '';
 };
 
@@ -65,3 +66,39 @@ function mult_siya(m) {
 	mathmagic();
 };
 
+const ANTI_CHEAT_CODE = "Fe12NAfA3R6z4k0z";
+const SALT = "af0ik392jrmt0nsfdghy0";
+function import_save() {
+        var txt = $('#savegame').val();
+ 
+        if (txt.search(ANTI_CHEAT_CODE) != -1) {
+                var result = txt.split(ANTI_CHEAT_CODE);
+                txt = "";
+                for (var i = 0; i < result[0].length; i += 2) {
+                        txt += result[0][i];
+                }
+                if (CryptoJS.MD5(txt + SALT) != result[1]) {
+                        // alert("This is not a valid Clicker Heroes savegame!");
+                        return;
+                }
+        }
+        var data = $.parseJSON(atob(txt));
+ 
+        // If Morgulis owned, box is checked
+		$('#morg_owned').prop('checked', data.ancients.ancients.hasOwnProperty(16));
+		morg_calc();
+
+ 
+        if(data.ancients.ancients.hasOwnProperty(5))    {
+                // has Siyalatas
+                siya.value = data.ancients.ancients[5].level;
+				$('#base_label').html('Siyalatas:');
+                mathmagic();
+        }
+        else if(data.ancients.ancients.hasOwnProperty(28))      {
+                // has Argaiv
+                siya.value = data.ancients.ancients[28].level;
+				$('#base_label').html('Argaiv:');
+                mathmagic();
+        }
+}
