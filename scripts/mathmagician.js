@@ -6,9 +6,8 @@ click = document.getElementById('click'),
 jugg = document.getElementById('jugg');
 
 siya.onkeyup = mathmagic;
-$('#savegame').keyup(import_save);
-
 $('body').on('change', '#morg_owned', morg_calc);
+$('#savegame').keyup(import_save);
 
 function mathmagic() {
 	var fsiya = parseFloat(siya.value);
@@ -34,22 +33,35 @@ function mathmagic() {
 
 // sets the proper title and calculates values dependent on the user owning Morg
 function morg_calc() {
-	if ($('#morg_owned').is(':checked')) {
-		$('#soul_label').html('Morgulis:');
-	} else {
-		$('#soul_label').html('Souls banked:');
-	}
+
 	
 	var fsiya = parseFloat(siya.value);
 	if(fsiya<100)
 		result = Math.ceil(Math.pow((fsiya+1),2));
 	else
 		result = Math.ceil(Math.pow((fsiya+22),2));
+	
+	
+	var math = MathJax.Hub.getAllJax("morg_formula")[0];
+
+	if ($('#morg_owned').is(':checked')) {
+		$('#soul_label').html('Morgulis:');
+		if(fsiya<100)
+			MathJax.Hub.Queue(["Text",math,"Morgulis = (Siya+1)^2"]);
+		else
+			MathJax.Hub.Queue(["Text",math,"Morgulis = (Siya+22)^2"]);
+	} else {
+		$('#soul_label').html('Souls banked:');
+		if(fsiya<100)
+			MathJax.Hub.Queue(["Text",math,"Morgulis = (Siya+1)^2 * 1.1"]);
+		else
+			MathJax.Hub.Queue(["Text",math,"Morgulis = (Siya+22)^2 * 1.1"]);
 		
-	if(!$('#morg_owned').is(':checked'))
 		result=Math.ceil(result*1.1);
-		
-		morg.value = !isNaN(result) ? result : '';
+	}
+	
+	MathJax.Hub.Queue(["Typeset",MathJax.Hub,"morg_formula"]);
+	morg.value = !isNaN(result) ? result : '';
 };
 
 function level_siya(add_levels) {
@@ -102,3 +114,11 @@ function import_save() {
                 mathmagic();
         }
 }
+
+function show_math() {
+	$('#formulas').toggle();
+};
+
+MathJax.Hub.Config({       
+    "HTML-CSS": { scale: 150}    
+  }); 
