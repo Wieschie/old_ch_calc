@@ -81,6 +81,7 @@ function solo_calc(fsiya) {
 function iris_calc(fsiya) {
 	result = Math.ceil((371 * Math.log(fsiya)) - 2075);
 	result = Math.max(5*Math.round(result/5) - 2,0);
+	result = result >=98 ? result : 0;
 	return !isNaN(result) ? result : '';
 }
 
