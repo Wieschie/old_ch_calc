@@ -43,7 +43,8 @@ function morg_calc() {
 		result = Math.ceil(Math.pow((fsiya+1),2));
 	else
 		result = Math.ceil(Math.pow((fsiya+22),2));
-	$('#morg').val(!isNaN(result) ? result : '');
+	
+	
 	
 	var math = MathJax.Hub.getAllJax("morg_formula")[0];
 
@@ -62,6 +63,7 @@ function morg_calc() {
 		
 		result=Math.ceil(result*1.1);
 	}
+	$('#morg').val(!isNaN(result) ? result : '');
 	
 	MathJax.Hub.Queue(["Typeset",MathJax.Hub,"morg_formula"]);
 }
