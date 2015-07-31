@@ -1,9 +1,4 @@
-var siya = document.getElementById('siya'),
-morg = document.getElementById('morg'),
-gold = document.getElementById('gold'),
-solo = document.getElementById('solo'),
-click = document.getElementById('click'),
-jugg = document.getElementById('jugg');
+var siya = document.getElementById('siya');
 
 siya.onchange = mathmagic;
 siya.onkeyup = mathmagic;
@@ -19,24 +14,24 @@ function mathmagic() {
 		morg_calc();
 	
 		result = Math.ceil(fsiya * 0.93)
-		gold.value = !isNaN(result) ? result : '';
+		$('#gold').val(!isNaN(result) ? result : '');
 		
 		if(fsiya<=693)
 			result=Math.ceil(fsiya*.9);
 		else
 			// https://www.reddit.com/r/ClickerHeroes/comments/3823wt/mathematical_analysis_of_lategame_for_most_idle/
 			result=Math.ceil(1.15*Math.pow(Math.log(3.25*Math.pow(fsiya,2)),.4)*Math.pow(fsiya,.8));
-		solo.value = !isNaN(result) ? result : '';
+		$('#solo').val(!isNaN(result) ? result : '');
 		
 		result = Math.ceil((371 * Math.log(fsiya)) - 2075);
-		result = Math.round(5*Math.floor(result/5) - 2,0);
+		result = Math.max(5*Math.round(result/5) - 2,0);
 		$('#iris').val(!isNaN(result) ? result : '');
 		
 		result = Math.ceil(fsiya * 0.5);
-		click.value = !isNaN(result) ? result : '';
+		$('#click').val(!isNaN(result) ? result : '');
 		
 		result = Math.ceil(fsiya * 0.1);
-		jugg.value = !isNaN(result) ? result : '';
+		$('#jugg').val(!isNaN(result) ? result : '');
 };
 
 // sets the proper title and calculates values dependent on the user owning Morg
@@ -48,7 +43,7 @@ function morg_calc() {
 		result = Math.ceil(Math.pow((fsiya+1),2));
 	else
 		result = Math.ceil(Math.pow((fsiya+22),2));
-	
+	$('#morg').val(!isNaN(result) ? result : '');
 	
 	var math = MathJax.Hub.getAllJax("morg_formula")[0];
 
@@ -69,7 +64,6 @@ function morg_calc() {
 	}
 	
 	MathJax.Hub.Queue(["Typeset",MathJax.Hub,"morg_formula"]);
-	morg.value = !isNaN(result) ? result : '';
 };
 
 function level_siya(add_levels) {
@@ -86,6 +80,8 @@ function mult_siya(m) {
 	mathmagic();
 };
 
+
+//decodes the savegame, and sets checkbox based on status of Morg.  Also sets argaiv/siyalatas, but I might remove that.
 const ANTI_CHEAT_CODE = "Fe12NAfA3R6z4k0z";
 const SALT = "af0ik392jrmt0nsfdghy0";
 function import_save() {
