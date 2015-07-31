@@ -1,50 +1,48 @@
-var siya = document.getElementById('siya');
+$('#siya').change(function(){
+	mathmagic();
+});
+$('#siya').keyup(function(){
+	mathmagic();
+});	
 
-siya.onchange = mathmagic;
-siya.onkeyup = mathmagic;
-$('#morg_owned').change(morg_calc);
+$('#morg_owned').change(function(){
+	morg_calc();
+}); 
+
 $('#savegame').keyup(import_save);
 
-MathJax.Hub.Config({       
-    "HTML-CSS": { scale: 150}    
-  }); 
 
-function mathmagic() {
-	var fsiya = parseFloat(siya.value);
-		
-		morg_calc();
+function mathmagic(fsiya) {
+	if(typeof fsiya == "undefined")
+		fsiya = parseFloat($('#siya').val());
 	
-		result = Math.ceil(fsiya * 0.93);
-		$('#gold').val(!isNaN(result) ? result : '');
-		
-		if(fsiya<=693)
-			result=Math.ceil(fsiya*.9);
-		else
-			// https://www.reddit.com/r/ClickerHeroes/comments/3823wt/mathematical_analysis_of_lategame_for_most_idle/
-			result=Math.ceil(1.15*Math.pow(Math.log(3.25*Math.pow(fsiya,2)),.4)*Math.pow(fsiya,.8));
-		$('#solo').val(!isNaN(result) ? result : '');
-		
-		result = Math.ceil((371 * Math.log(fsiya)) - 2075);
-		result = Math.max(5*Math.round(result/5) - 2,0);
-		$('#iris').val(!isNaN(result) ? result : '');
-		
-		result = Math.ceil(fsiya * 0.5);
-		$('#click').val(!isNaN(result) ? result : '');
-		
-		result = Math.ceil(fsiya * 0.1);
-		$('#jugg').val(!isNaN(result) ? result : '');
+	morg_calc(fsiya);
+
+	result = gold_calc(fsiya);
+	$('#gold').val(!isNaN(result) ? result : '');
+	
+	result = solo_calc(fsiya);
+	$('#solo').val(!isNaN(result) ? result : '');
+	
+	result = iris_calc(fsiya);
+	$('#iris').val(!isNaN(result) ? result : '');
+	
+	result = click_calc(fsiya);
+	$('#click').val(!isNaN(result) ? result : '');
+	
+	result = jugg_calc(fsiya);
+	$('#jugg').val(!isNaN(result) ? result : '');
 }
 
 // sets the proper title and calculates values dependent on the user owning Morg
-function morg_calc() {
-
+function morg_calc(fsiya) {
+	if(typeof fsiya == "undefined")
+		fsiya = parseFloat($('#siya').val());
 	
-	var fsiya = parseFloat(siya.value);
 	if(fsiya<100)
 		result = Math.ceil(Math.pow((fsiya+1),2));
 	else
 		result = Math.ceil(Math.pow((fsiya+22),2));
-	
 	
 	
 	var math = MathJax.Hub.getAllJax("morg_formula")[0];
@@ -66,6 +64,32 @@ function morg_calc() {
 	}
 	$('#morg').val(!isNaN(result) ? result : '');
 	
+}
+
+function gold_calc(fsiya) {
+	return Math.ceil(fsiya * 0.93);
+}
+
+function solo_calc(fsiya) {
+	if(fsiya<=693)
+		return Math.ceil(fsiya*.9);
+	
+	else
+		// https://www.reddit.com/r/ClickerHeroes/comments/3823wt/mathematical_analysis_of_lategame_for_most_idle/
+		return Math.ceil(1.15*Math.pow(Math.log(3.25*Math.pow(fsiya,2)),.4)*Math.pow(fsiya,.8));
+}
+
+function iris_calc(fsiya) {
+	var iris = Math.ceil((371 * Math.log(fsiya)) - 2075);
+	return Math.max(5*Math.round(iris/5) - 2,0);
+}
+
+function click_calc(fsiya) {
+	return Math.ceil(fsiya * 0.5);
+}
+
+function jugg_calc(fsiya) {
+	return Math.ceil(fsiya * 0.1);
 }
 
 function level_siya(add_levels) {
@@ -104,7 +128,7 @@ function import_save() {
  
         // If Morgulis owned, box is checked
 		$('#morg_owned').prop('checked', data.ancients.ancients.hasOwnProperty(16));
-		morg_calc();
+		morg_calc(parseFloat($('#siya').val()));
 
  
         if(data.ancients.ancients.hasOwnProperty(5))    {
