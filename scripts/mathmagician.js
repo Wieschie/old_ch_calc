@@ -5,6 +5,7 @@ solo = document.getElementById('solo'),
 click = document.getElementById('click'),
 jugg = document.getElementById('jugg');
 
+siya.onchange = mathmagic;
 siya.onkeyup = mathmagic;
 $('body').on('change', '#morg_owned', morg_calc);
 $('#savegame').keyup(import_save);
