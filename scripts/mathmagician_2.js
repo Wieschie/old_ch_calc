@@ -1,12 +1,13 @@
 $('#siya').change(function(){
 	mathmagic();
 });
+
 $('#siya').keyup(function(){
 	mathmagic();
 });	
 
 $('#morg_owned').change(function(){
-	morg_calc();
+	$('#morg').val(morg_calc());
 }); 
 
 $('#savegame').keyup(import_save);
@@ -16,22 +17,17 @@ function mathmagic(fsiya) {
 	if(typeof fsiya == "undefined")
 		fsiya = parseFloat($('#siya').val());
 	
-	morg_calc(fsiya);
+	$('#morg').val(morg_calc(fsiya));
+	
+	$('#gold').val(gold_calc(fsiya));
+	
+	$('#solo').val(solo_calc(fsiya));
 
-	result = gold_calc(fsiya);
-	$('#gold').val(!isNaN(result) ? result : '');
+	$('#iris').val(iris_calc(fsiya));
 	
-	result = solo_calc(fsiya);
-	$('#solo').val(!isNaN(result) ? result : '');
+	$('#click').val(click_calc(fsiya));
 	
-	result = iris_calc(fsiya);
-	$('#iris').val(!isNaN(result) ? result : '');
-	
-	result = click_calc(fsiya);
-	$('#click').val(!isNaN(result) ? result : '');
-	
-	result = jugg_calc(fsiya);
-	$('#jugg').val(!isNaN(result) ? result : '');
+	$('#jugg').val(jugg_calc(fsiya));
 }
 
 // sets the proper title and calculates values dependent on the user owning Morg
@@ -62,34 +58,40 @@ function morg_calc(fsiya) {
 		
 		result=Math.ceil(result*1.1);
 	}
-	$('#morg').val(!isNaN(result) ? result : '');
 	
+	return !isNaN(result) ? result : '';
 }
 
 function gold_calc(fsiya) {
-	return Math.ceil(fsiya * 0.93);
+	result = Math.ceil(fsiya * 0.93);
+	return !isNaN(result) ? result : '';
 }
 
 function solo_calc(fsiya) {
 	if(fsiya<=693)
-		return Math.ceil(fsiya*.9);
+		result = Math.ceil(fsiya*.9);
 	
 	else
 		// https://www.reddit.com/r/ClickerHeroes/comments/3823wt/mathematical_analysis_of_lategame_for_most_idle/
-		return Math.ceil(1.15*Math.pow(Math.log(3.25*Math.pow(fsiya,2)),.4)*Math.pow(fsiya,.8));
+		result = Math.ceil(1.15*Math.pow(Math.log(3.25*Math.pow(fsiya,2)),.4)*Math.pow(fsiya,.8));
+		
+	return !isNaN(result) ? result : '';
 }
 
 function iris_calc(fsiya) {
-	var iris = Math.ceil((371 * Math.log(fsiya)) - 2075);
-	return Math.max(5*Math.round(iris/5) - 2,0);
+	result = Math.ceil((371 * Math.log(fsiya)) - 2075);
+	result = Math.max(5*Math.round(result/5) - 2,0);
+	return !isNaN(result) ? result : '';
 }
 
 function click_calc(fsiya) {
-	return Math.ceil(fsiya * 0.5);
+	result = Math.ceil(fsiya * 0.5);
+	return !isNaN(result) ? result : '';
 }
 
 function jugg_calc(fsiya) {
-	return Math.ceil(fsiya * 0.1);
+	result = Math.ceil(fsiya * 0.1);
+	return !isNaN(result) ? result : '';
 }
 
 function level_siya(add_levels) {
@@ -128,7 +130,7 @@ function import_save() {
  
         // If Morgulis owned, box is checked
 		$('#morg_owned').prop('checked', data.ancients.ancients.hasOwnProperty(16));
-		morg_calc(parseFloat($('#siya').val()));
+		$('#morg').val(morg_calc());
 
  
         if(data.ancients.ancients.hasOwnProperty(5))    {
