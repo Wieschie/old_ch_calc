@@ -9,6 +9,9 @@ siya.onchange = mathmagic;
 siya.onkeyup = mathmagic;
 $('body').on('change', '#morg_owned', morg_calc);
 $('#savegame').keyup(import_save);
+MathJax.Hub.Config({       
+    "HTML-CSS": { scale: 150}    
+  }); 
 
 function mathmagic() {
 	var fsiya = parseFloat(siya.value);
@@ -26,7 +29,7 @@ function mathmagic() {
 		solo.value = !isNaN(result) ? result : '';
 		
 		result = Math.ceil((371 * Math.log(fsiya)) - 2075);
-		result = Math.max(5*Math.floor(result/5+.5) - 2,0);
+		result = Math.round(5*Math.floor(result/5) - 2,0);
 		$('#iris').val(!isNaN(result) ? result : '');
 		
 		result = Math.ceil(fsiya * 0.5);
@@ -124,6 +127,3 @@ function show_math() {
 	$('#formulas').toggle();
 };
 
-MathJax.Hub.Config({       
-    "HTML-CSS": { scale: 150}    
-  }); 
