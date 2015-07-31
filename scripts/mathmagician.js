@@ -13,7 +13,7 @@ function mathmagic() {
 		
 		morg_calc();
 	
-		result = Math.ceil(fsiya * 0.93)
+		result = Math.ceil(fsiya * 0.93);
 		$('#gold').val(!isNaN(result) ? result : '');
 		
 		if(fsiya<=693)
@@ -32,7 +32,7 @@ function mathmagic() {
 		
 		result = Math.ceil(fsiya * 0.1);
 		$('#jugg').val(!isNaN(result) ? result : '');
-};
+}
 
 // sets the proper title and calculates values dependent on the user owning Morg
 function morg_calc() {
@@ -64,21 +64,21 @@ function morg_calc() {
 	}
 	
 	MathJax.Hub.Queue(["Typeset",MathJax.Hub,"morg_formula"]);
-};
+}
 
 function level_siya(add_levels) {
 	var level = parseInt(siya.value);
 	level += add_levels;
 	siya.value = level;
 	mathmagic();
-};
+}
 
 function mult_siya(m) {
 	var level = parseFloat(siya.value);
 	level *= m;
 	siya.value = Math.ceil(level);
 	mathmagic();
-};
+}
 
 
 //decodes the savegame, and sets checkbox based on status of Morg.  Also sets argaiv/siyalatas, but I might remove that.
@@ -121,5 +121,5 @@ function import_save() {
 
 function show_math() {
 	$('#formulas').toggle();
-};
+}
 
