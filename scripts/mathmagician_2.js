@@ -71,7 +71,7 @@ function solo_calc(fsiya) {
 	var formula = MathJax.Hub.getAllJax("morg_formula")[0];
 	if(fsiya<=693) {
 		result = Math.ceil(fsiya*.9);
-		MathJax.Hub.Queue(["Text",formula,"Solomon = Siya * 0.9"]);
+		MathJax.Hub.Queue(["Text",formula,"Solomon = .9 * Siya"]);
 	}
 	
 	else {
