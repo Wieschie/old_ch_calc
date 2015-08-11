@@ -68,12 +68,17 @@ function gold_calc(fsiya) {
 }
 
 function solo_calc(fsiya) {
-	if(fsiya<=693)
+	var formula = MathJax.Hub.getAllJax("morg_formula")[0];
+	if(fsiya<=693) {
 		result = Math.ceil(fsiya*.9);
+		MathJax.Hub.Queue(["Text",formula,"Solomon = Siya * 0.9"]);
+	}
 	
-	else
+	else {
 		// https://www.reddit.com/r/ClickerHeroes/comments/3823wt/mathematical_analysis_of_lategame_for_most_idle/
 		result = Math.ceil(1.15*Math.pow(Math.log(3.25*Math.pow(fsiya,2)),.4)*Math.pow(fsiya,.8));
+		MathJax.Hub.Queue(["Text",formula,"Solomon = 1.15 * \ln{(3.25 * Siya^2)}^{0.4} * Siya^{0.8}"]);
+	}
 		
 	return !isNaN(result) ? result : '';
 }
