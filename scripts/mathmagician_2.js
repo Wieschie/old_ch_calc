@@ -52,9 +52,9 @@ function morg_calc(fsiya) {
 	} else {
 		$('#soul_label').html('Souls banked:');
 		if(fsiya<100)
-			MathJax.Hub.Queue(["Text",math,"Morgulis = (Siya+1)^2 * 1.1"]);
+			MathJax.Hub.Queue(["Text",math,"Souls banked = (Siya+1)^2 * 1.1"]);
 		else
-			MathJax.Hub.Queue(["Text",math,"Morgulis = (Siya+22)^2 * 1.1"]);
+			MathJax.Hub.Queue(["Text",math,"Souls banked = (Siya+22)^2 * 1.1"]);
 		
 		result=Math.ceil(result*1.1);
 	}
