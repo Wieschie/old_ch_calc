@@ -68,6 +68,7 @@ function gold_calc(fsiya) {
 }
 
 function solomon_calc(fsiya) {
+	<!--
 	calcSolomon = Math.ceil(1.15*Math.pow(Math.log(3.25*Math.pow(fsiya,2)),.4)*Math.pow(fsiya,.8));
 	
 	if(calcSolomon<fsiya) {
@@ -80,6 +81,8 @@ function solomon_calc(fsiya) {
 	}
 	
 	return !isNaN(result) ? result : '';
+	-->
+	return 102;
 }
 
 function iris_calc(fsiya) {
