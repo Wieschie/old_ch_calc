@@ -6,10 +6,6 @@ $('#siya').keyup(function(){
 	mathmagic();
 });	
 
-$('#morg_owned').change(function(){
-	$('#morg').val(morg_calc());
-}); 
-
 $('#savegame').keyup(import_save);
 
 
@@ -30,8 +26,8 @@ function mathmagic(fsiya) {
 	$('#jugg').val(jugg_calc(fsiya));
 }
 
-// sets the proper title and calculates values dependent on the user owning Morg
 function morg_calc(fsiya) {
+// always assume morgulis because calc is valid.   See https://www.reddit.com/r/ClickerHeroes/comments/43yt7n/updated_simpler_rule_of_thumb_calculator/czmabq0
 	if(typeof fsiya == "undefined")
 		fsiya = parseFloat($('#siya').val());
 	
@@ -43,22 +39,12 @@ function morg_calc(fsiya) {
 	
 	var math = MathJax.Hub.getAllJax("morg_formula")[0];
 
-	if ($('#morg_owned').is(':checked')) {
-		$('#soul_label').html('Morgulis:');
-		if(fsiya<100)
-			MathJax.Hub.Queue(["Text",math,"Morgulis = (Siya+1)^2"]);
-		else
-			MathJax.Hub.Queue(["Text",math,"Morgulis = (Siya+22)^2"]);
-	} else {
-		$('#soul_label').html('Souls banked:');
-		if(fsiya<100)
-			MathJax.Hub.Queue(["Text",math,"Souls banked = (Siya+1)^2 * 1.1"]);
-		else
-			MathJax.Hub.Queue(["Text",math,"Souls banked = (Siya+22)^2 * 1.1"]);
-		
-		result=Math.ceil(result*1.1);
-	}
-	
+	$('#soul_label').html('Morgulis:');
+	if(fsiya<100)
+		MathJax.Hub.Queue(["Text",math,"Morgulis = (Siya+1)^2"]);
+	else
+		MathJax.Hub.Queue(["Text",math,"Morgulis = (Siya+22)^2"]);
+
 	return !isNaN(result) ? result : '';
 }
 
@@ -152,9 +138,7 @@ function import_save() {
         }
         var data = $.parseJSON(atob(txt));
  
-        // If Morgulis owned, box is checked
-		$('#morg_owned').prop('checked', data.ancients.ancients.hasOwnProperty(16));
-		$('#morg').val(morg_calc());
+	$('#morg').val(morg_calc());
 
  
         if(data.ancients.ancients.hasOwnProperty(5))    {
