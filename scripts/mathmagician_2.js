@@ -21,7 +21,7 @@ function mathmagic(fsiya) {
 	
 	$('#gold').val(gold_calc(fsiya));
 	
-	$('#solo').val(solo_calc(fsiya));
+	$('#solomon').val(solomon_calc(fsiya));
 
 	$('#iris').val(iris_calc(fsiya));
 	
@@ -67,19 +67,18 @@ function gold_calc(fsiya) {
 	return !isNaN(result) ? result : '';
 }
 
-function solo_calc(fsiya) {
-	var formula = MathJax.Hub.getAllJax("morg_formula")[0];
-	if(fsiya<=693) {
-		result = Math.ceil(fsiya*.9);
-		MathJax.Hub.Queue(["Text",formula,"Solomon = .9 * Siya"]);
+function solomon_calc(fsiya) {
+	calcSolomon = Math.ceil(1.15*Math.pow(Math.log(3.25*Math.pow(fsiya,2)),.4)*Math.pow(fsiya,.8));
+	
+	if(calcSolomon<fsiya) {
+		result = calcSolomon;
+		MathJax.Hub.Queue(["Text",math,"Solomon = 1.15 * \ln{(3.25 * Siya^2)}^{0.4} * Siya^{0.8}"]);
+	}
+	else {
+		result = Math.ceil(fsiya);
+		MathJax.Hub.Queue(["Text",math,"Solomon = Siyalatas"])
 	}
 	
-	else {
-		// https://www.reddit.com/r/ClickerHeroes/comments/3823wt/mathematical_analysis_of_lategame_for_most_idle/
-		result = Math.ceil(1.15*Math.pow(Math.log(3.25*Math.pow(fsiya,2)),.4)*Math.pow(fsiya,.8));
-		MathJax.Hub.Queue(["Text",formula,"Solomon = 1.15 * \ln{(3.25 * Siya^2)}^{0.4} * Siya^{0.8}"]);
-	}
-		
 	return !isNaN(result) ? result : '';
 }
 
