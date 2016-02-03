@@ -6,10 +6,6 @@ $('#siya').keyup(function(){
 	mathmagic();
 });	
 
-$('#morg_owned').change(function(){
-	$('#morg').val(morg_calc());
-}); 
-
 $('#savegame').keyup(import_save);
 
 
@@ -30,8 +26,8 @@ function mathmagic(fsiya) {
 	$('#jugg').val(jugg_calc(fsiya));
 }
 
-// sets the proper title and calculates values dependent on the user owning Morg
 function morg_calc(fsiya) {
+// always assume morgulis because calc is valid.   See https://www.reddit.com/r/ClickerHeroes/comments/43yt7n/updated_simpler_rule_of_thumb_calculator/czmabq0
 	if(typeof fsiya == "undefined")
 		fsiya = parseFloat($('#siya').val());
 	
@@ -43,32 +39,40 @@ function morg_calc(fsiya) {
 	
 	var math = MathJax.Hub.getAllJax("morg_formula")[0];
 
-	if ($('#morg_owned').is(':checked')) {
-		$('#soul_label').html('Morgulis:');
-		if(fsiya<100)
-			MathJax.Hub.Queue(["Text",math,"Morgulis = (Siya+1)^2"]);
-		else
-			MathJax.Hub.Queue(["Text",math,"Morgulis = (Siya+22)^2"]);
-	} else {
-		$('#soul_label').html('Souls banked:');
-		if(fsiya<100)
-			MathJax.Hub.Queue(["Text",math,"Souls banked = (Siya+1)^2 * 1.1"]);
-		else
-			MathJax.Hub.Queue(["Text",math,"Souls banked = (Siya+22)^2 * 1.1"]);
-		
-		result=Math.ceil(result*1.1);
-	}
-	
+	$('#soul_label').html('Morgulis:');
+	if(fsiya<100)
+		MathJax.Hub.Queue(["Text",math,"Morgulis = (Siya+1)^2"]);
+	else
+		MathJax.Hub.Queue(["Text",math,"Morgulis = (Siya+22)^2"]);
+
 	return !isNaN(result) ? result : '';
 }
 
 function gold_calc(fsiya) {
-	result = Math.ceil(fsiya * 0.93);
+	result = Math.ceil(fsiya * 0.927);
 	return !isNaN(result) ? result : '';
 }
 
 function solo_calc(fsiya) {
-	var formula = MathJax.Hub.getAllJax("morg_formula")[0];
+	var formula = MathJax.Hub.getAllJax("solo_formula")[0];
+
+
+	calcSolomon = Math.ceil(1.15*Math.pow(Math.log(3.25*Math.pow(fsiya,2)),.4)*Math.pow(fsiya,.8));
+
+	if(fsiya<calcSolomon) {
+		result = Math.ceil(fsiya);
+		MathJax.Hub.Queue(["Text",formula,"Solomon = Siyalatas"])
+	}
+	else {
+		result = calcSolomon;
+		MathJax.Hub.Queue(["Text",formula,"Solomon = 1.15 * \ln{(3.25 * Siya^2)}^{0.4} * Siya^{0.8}"]);
+	}
+	
+	return !isNaN(result) ? result : '';
+
+
+
+
 	if(fsiya<=693) {
 		result = Math.ceil(fsiya*.9);
 		MathJax.Hub.Queue(["Text",formula,"Solomon = .9 * Siya"]);
@@ -96,7 +100,7 @@ function click_calc(fsiya) {
 }
 
 function jugg_calc(fsiya) {
-	result = Math.ceil(fsiya * 0.1);
+	result = Math.ceil(Math.pow(fsiya * 0.5, 0.8));
 	return !isNaN(result) ? result : '';
 }
 
@@ -134,9 +138,7 @@ function import_save() {
         }
         var data = $.parseJSON(atob(txt));
  
-        // If Morgulis owned, box is checked
-		$('#morg_owned').prop('checked', data.ancients.ancients.hasOwnProperty(16));
-		$('#morg').val(morg_calc());
+	$('#morg').val(morg_calc());
 
  
         if(data.ancients.ancients.hasOwnProperty(5))    {

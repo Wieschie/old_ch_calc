@@ -1,2 +1,2 @@
-# wieschie.github.io
-[Website here.](https://wieschie.github.io)
+# alexbonjour.github.io
+[Website here.](https://alexbonjour.github.io/rules-of-thumb)
