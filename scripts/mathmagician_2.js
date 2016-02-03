@@ -68,20 +68,6 @@ function gold_calc(fsiya) {
 }
 
 function solo_calc(fsiya) {
-	<!--
-	calcSolomon = Math.ceil(1.15*Math.pow(Math.log(3.25*Math.pow(fsiya,2)),.4)*Math.pow(fsiya,.8));
-	
-	if(calcSolomon<fsiya) {
-		result = calcSolomon;
-		MathJax.Hub.Queue(["Text",math,"Solomon = 1.15 * \ln{(3.25 * Siya^2)}^{0.4} * Siya^{0.8}"]);
-	}
-	else {
-		result = Math.ceil(fsiya);
-		MathJax.Hub.Queue(["Text",math,"Solomon = Siyalatas"])
-	}
-	
-	return !isNaN(result) ? result : '';
-	-->
 	return 102;
 }
 
