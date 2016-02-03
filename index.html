@@ -56,64 +56,65 @@
       </div>
       
       <!--	<div id="pup"></div> -->
-      <label id="base_label">Siyalatas / Argaiv:</label>
-      <input type="number" name="siya" id="siya" value="0" autofocus>
+      <div class="flex">
+	<label id="base_label">Siyalatas / Argaiv:</label>
+	<input type="number" name="siya" id="siya" value="0" autofocus>
+      </div>
+
+      <div class="flex">
+	<label id="soul_label">Morgulis:</label>
+	<input type="number" name="morg" id="morg" value="0" readonly>
+      </div>
+
+      <div class="flex">
+	<label>Gold ancients <a onclick="void(0)" onmouseover="nhpup.popup('Libertas, Mammon, and Mimzee.');">(<u>?</u>)</a>:</label> 
+	<input type="number" name="gold" id="gold" value="0" readonly>
+      </div>
+
+      <div class="flex">
+	<label>Solomon:</label>
+	<input type="number" name="solo" id="solo" value="0" readonly>
+      </div>
+
+      <div class="flex">
+	<label>Iris <a onclick="void(0)" onmouseover="nhpup.popup('This is a rough estimate, and assumes all other ancients are even with Siya per the rules.  If you like lazy runs drop 10 to 50 levels.');">(<u>?</u>)</a>:</label> 
+	<input type="number" name="iris" id="iris" value="0" readonly>
+      </div>
+
+      <div class="flex">
+	<label>Click ancients <a onclick = "void(0)" onmouseover="nhpup.popup('Bhaal, Frags, and Pluto. If you are going with an idle or hybrid build, it is not recommended to purchase any click ancients until Siyalatas is at least 1000');">(<u>?</u>)</a>:</label> 
+	<input type="number" name="click" id="click" value="0" readonly>
+      </div>
+
+      <div class="flex">
+	<label>Juggernaut:</label>
+	<input type="number" name="jugg" id="jugg" value="0" readonly>
+      </div>
+
+      <div class="flex">
+	<label>Save import <a onclick="void(0)" onmouseover="nhpup.popup('This is optional - you can still manually enter your Siyalatas level');">(<u>?</u>)</a>:</label> 
+	<input type="text" placeholder="Paste your save here." id="savegame">
+      </div>
     </div>
 
-    <div class="flex">
-      <label id="soul_label">Morgulis:</label>
-      <input type="number" name="morg" id="morg" value="0" readonly>
+    <!-- These formulas are the default, first visible formulas.  They may get updated during calculations -->
+    <div class='formulas' id='formulas'>
+      <div id='morg_formula'>
+	$$Morgulis = (Siya+1)^2$$
+      </div>
+      $$Gold\ ancients = .927 * Siya$$
+      <div id='solo_formula'>
+	$$Solomon = Minimum( Siya, 1.15 * \ln{(3.25 * Siya^2)}^{0.4} * Siya^{0.8} )$$
+      </div>
+      <a onclick="void(0)" onmouseover="nhpup.popup('This calculates a rough optimal zone, then subtracts 1000 and rounds to the nearest 3 or 8.');">
+	$$Iris = 5*\lfloor\frac{371 * \ln({Siya}) - 2075}{5}\rfloor - 2$$</a>
+
+      $$Click\ ancients = .5 * Siya$$
+      $$Juggernaut = (Siya*0.5)^{0.8}$$
     </div>
 
-    <div class="flex">
-      <label>Gold ancients <a onclick="void(0)" onmouseover="nhpup.popup('Libertas, Mammon, and Mimzee.');">(<u>?</u>)</a>:</label> 
-      <input type="number" name="gold" id="gold" value="0" readonly>
-    </div>
-
-    <div class="flex">
-      <label>Solomon:</label>
-      <input type="number" name="solo" id="solo" value="0" readonly>
-    </div>
-
-    <div class="flex">
-      <label>Iris <a onclick="void(0)" onmouseover="nhpup.popup('This is a rough estimate, and assumes all other ancients are even with Siya per the rules.  If you like lazy runs drop 10 to 50 levels.');">(<u>?</u>)</a>:</label> 
-      <input type="number" name="iris" id="iris" value="0" readonly>
-    </div>
-
-    <div class="flex">
-      <label>Click ancients <a onclick = "void(0)" onmouseover="nhpup.popup('Bhaal, Frags, and Pluto. If you are going with an idle or hybrid build, it is not recommended to purchase any click ancients until Siyalatas is at least 1000');">(<u>?</u>)</a>:</label> 
-      <input type="number" name="click" id="click" value="0" readonly>
-    </div>
-
-    <div class="flex">
-      <label>Juggernaut:</label>
-      <input type="number" name="jugg" id="jugg" value="0" readonly>
-    </div>
-
-    <div class="flex">
-      <label>Save import <a onclick="void(0)" onmouseover="nhpup.popup('This is optional - you can still manually enter your Siyalatas level');">(<u>?</u>)</a>:</label> 
-      <input type="text" placeholder="Paste your save here." id="savegame">
-    </div>
-</div>
-
-<!-- These formulas are the default, first visible formulas.  They may get updated during calculations -->
-<div class='formulas' id='formulas'>
-  <div id='morg_formula'>
-    $$Morgulis = (Siya+1)^2$$
-  </div>
-  $$Gold\ ancients = .927 * Siya$$
-  <div id='solo_formula'>
-    $$Solomon = Minimum( Siya, 1.15 * \ln{(3.25 * Siya^2)}^{0.4} * Siya^{0.8} )$$
-  </div>
-  <a onclick="void(0)" onmouseover="nhpup.popup('This calculates a rough optimal zone, then subtracts 1000 and rounds to the nearest 3 or 8.');">
-    $$Iris = 5*\lfloor\frac{371 * \ln({Siya}) - 2075}{5}\rfloor - 2$$</a>
-
-  $$Click\ ancients = .5 * Siya$$
-  $$Juggernaut = (Siya*0.5)^{0.8}$$
-</div>
-
-<div id='footer'>
-  <button onclick='show_math()' id="formula_button">Show/hide formulas.</button><br>
+    <div id='footer'>
+      <button onclick='show_math()' id="formula_button">Show/hide formulas.</button><br>
   by <a href="https://github.com/alexbonjour/rules-of-thumb">alexbonjour</a> forked from /u/Wieschie's calculator
   <a href="https://github.com/alexbonjour/rules-of-thumb">Github here. Suggestion or issue?  Pay a visit.</a>
 </div>
