@@ -63,7 +63,7 @@ function morg_calc(fsiya) {
 }
 
 function gold_calc(fsiya) {
-	result = Math.ceil(fsiya * 0.93);
+	result = Math.ceil(fsiya * 0.927);
 	return !isNaN(result) ? result : '';
 }
 
