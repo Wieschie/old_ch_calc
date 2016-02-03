@@ -114,7 +114,7 @@ function click_calc(fsiya) {
 }
 
 function jugg_calc(fsiya) {
-	result = Math.ceil(fsiya * 0.1);
+	result = Math.ceil((fsiya * 0.5)^0.8);
 	return !isNaN(result) ? result : '';
 }
 
