@@ -21,7 +21,7 @@ function mathmagic(fsiya) {
 	
 	$('#gold').val(gold_calc(fsiya));
 	
-	$('#solomon').val(solomon_calc(fsiya));
+	$('#solo').val(solo_calc(fsiya));
 
 	$('#iris').val(iris_calc(fsiya));
 	
@@ -67,7 +67,7 @@ function gold_calc(fsiya) {
 	return !isNaN(result) ? result : '';
 }
 
-function solomon_calc(fsiya) {
+function solo_calc(fsiya) {
 	<!--
 	calcSolomon = Math.ceil(1.15*Math.pow(Math.log(3.25*Math.pow(fsiya,2)),.4)*Math.pow(fsiya,.8));
 	
