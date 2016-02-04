@@ -157,5 +157,6 @@ function import_save() {
 
 function show_math() {
 	$('#formulas').toggle();
+	$('#formula_button').value = "Hide Formulas";
 }
 
