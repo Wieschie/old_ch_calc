@@ -1,2 +1,3 @@
-# alexbonjour.github.io
-[Website here.](https://alexbonjour.github.io/rules-of-thumb)
+Simple Rules of Thumb calculator, forked from @Wieschie   
+
+[Calculator](https://alexbonjour.github.io/rules-of-thumb/)
