@@ -155,8 +155,8 @@ function import_save() {
         }
 }
 
-function show_math() {
+function show_math(objButton) {
 	$('#formulas').toggle();
-	$('#formula_button').value = "Hide Formulas";
+	objButton.value = .is(':visible') ? "Hide Formulas" : "Show Formulas";
 }
 
