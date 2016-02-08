@@ -13,7 +13,8 @@ function mathmagic(fsiya) {
 	if(typeof fsiya == "undefined")
 		fsiya = parseFloat($('#siya').val());
 	
-	$('#morg').val(morg_calc(fsiya).toLocaleString("en"));
+	$('#morg').val(morg_calc(fsiya));
+	$('#morg').val(parseInt($('#morg')).toLocaleString("en"));
 	
 	$('#gold').val(gold_calc(fsiya));
 	
