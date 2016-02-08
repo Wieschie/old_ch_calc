@@ -105,14 +105,14 @@ function jugg_calc(fsiya) {
 }
 
 function level_siya(add_levels) {
-	var level = parseInt(siya.value);
+	var level = parseInt(siya.value) || 0;
 	level += add_levels;
 	siya.value = level;
 	mathmagic();
 }
 
 function mult_siya(m) {
-	var level = parseFloat(siya.value);
+	var level = parseFloat(siya.value) || 0;
 	level *= m;
 	siya.value = Math.ceil(level);
 	mathmagic();
