@@ -14,7 +14,6 @@ function mathmagic(fsiya) {
 		fsiya = parseFloat($('#siya').val());
 	
 	$('#morg').val(morg_calc(fsiya));
-	$('#morg').val(parseInt($('#morg')).toLocaleString("en"));
 	
 	$('#gold').val(gold_calc(fsiya));
 	
