@@ -17,7 +17,7 @@ function mathmagic(fsiya) {
 	
 	$('#gold').val(gold_calc(fsiya));
 	
-	$('#solo').val(solo_calc(fsiya));
+	$('#solomon').val(solomon_calc(fsiya));
 
 	$('#iris').val(iris_calc(fsiya));
 	
@@ -53,8 +53,8 @@ function gold_calc(fsiya) {
 	return !isNaN(result) ? result : '';
 }
 
-function solo_calc(fsiya) {
-	var formula = MathJax.Hub.getAllJax("solo_formula")[0];
+function solomon_calc(fsiya) {
+	var formula = MathJax.Hub.getAllJax("solomon_formula")[0];
 
 
 	calcSolomon = Math.ceil(1.15*Math.pow(Math.log(3.25*Math.pow(fsiya,2)),.4)*Math.pow(fsiya,.8));
