@@ -13,17 +13,17 @@ function mathmagic(fsiya) {
 	if(typeof fsiya == "undefined")
 		fsiya = parseFloat($('#siya').val());
 	
-	$('#morg').val(morg_calc(fsiya));
+	$('#morg').val(numeral(morg_calc(fsiya)).format('0,0'));
 	
-	$('#gold').val(gold_calc(fsiya));
+	$('#gold').val(numeral(gold_calc(fsiya)).format('0,0'));
 	
-	$('#solomon').val(solomon_calc(fsiya));
+	$('#solomon').val(numeral(solomon_calc(fsiya)).format('0,0'));
 
-	$('#iris').val(iris_calc(fsiya));
+	$('#iris').val(numeral(iris_calc(fsiya)).format('0,0'));
 	
-	$('#click').val(click_calc(fsiya));
+	$('#click').val(numeral(click_calc(fsiya)).format('0,0'));
 	
-	$('#jugg').val(jugg_calc(fsiya));
+	$('#jugg').val(numeral(jugg_calc(fsiya)).format('0,0'));
 }
 
 function morg_calc(fsiya) {
