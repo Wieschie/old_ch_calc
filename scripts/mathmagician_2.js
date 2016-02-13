@@ -104,14 +104,24 @@ function jugg_calc(fsiya) {
     return !isNaN(result) ? result : '';
 }
 
-function level_siya(add_levels) {
-    var level = parseInt(siya.value) || 0;
-    level += add_levels;
-    siya.value = level;
-    mathmagic();
+function level_up(add_levels) {
+    var accordion_visible_index =  $( "#accordion" ).accordion( "option", "active" );
+    if( accordion_visible_index == 0 )//idle
+    {
+        var level = parseInt(siya.value) || 0;
+        level += add_levels;
+        siya.value = level;
+        mathmagic();
+    } 
+    else if( accordion_visible_index == 1 )//hybrid
+    {
+    } 
+    else //active
+    {
+    }
 }
 
-function mult_siya(m) {
+function multiply_up(m) {
     var level = parseFloat(siya.value) || 0;
     level *= m;
     siya.value = Math.ceil(level);

@@ -60,16 +60,16 @@
     <div id='main'>
 
       <div class="button_container">
-        <button onclick="level_siya(10)">+10</button>
-        <button onclick="level_siya(25)">+25</button>
-        <button onclick="level_siya(100)">+100</button>
-        <button onclick="level_siya(1000)">+1000</button>
-        <button onclick="mult_siya(1.1)">+10%</button>
+        <button onclick="level_up(10)">+10</button>
+        <button onclick="level_up(25)">+25</button>
+        <button onclick="level_up(100)">+100</button>
+        <button onclick="level_up(1000)">+1000</button>
+        <button onclick="multiply_up(1.1)">+10%</button>
       </div>
       
       <div id="accordion">
         <h3>Idle Builds - Enter your Siyalatas Level</h3>
-        <div>
+        <div id="idle_accordion">
           <div class="flex">
             <label id="base_label">Siyalatas / Argaiv:</label>
             <input type="number" name="siya" id="siya" value="0" autofocus>
@@ -111,9 +111,9 @@
           </div>
         </div>
         <h3>Hybrid</h3>
-        <div>Coming soon</div>
+        <div id="hybrid_accordion">Coming soon</div>
         <h3>Active</h3>
-        <div>Coming soon, but not as soon as hybrid</div>
+        <div id="active_accordion">Coming soon, but not quite as soon as hybrid</div>
       </div>
     </div>
     
@@ -132,6 +132,7 @@
       $$Click\ ancients = .5 * Siya$$
       $$Juggernaut = (Siya*0.5)^{0.8}$$
     </div>
+
     <div id='footer'>
       <button onclick='show_math()' id="formula_button">Show Formulas</button><br>
       by <a href="https://github.com/alexbonjour/rules-of-thumb">alexbonjour</a> forked from /u/Wieschie's calculator <br>
