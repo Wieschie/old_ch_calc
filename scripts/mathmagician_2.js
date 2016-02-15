@@ -69,22 +69,6 @@ function solomon_calc(fsiya) {
     }
     
     return !isNaN(result) ? result : '';
-
-
-
-
-    if(fsiya<=693) {
-        result = Math.ceil(fsiya*.9);
-        MathJax.Hub.Queue(["Text",formula,"Solomon = .9 * Siya"]);
-    }
-    
-    else {
-        // https://www.reddit.com/r/ClickerHeroes/comments/3823wt/mathematical_analysis_of_lategame_for_most_idle/
-        result = Math.ceil(1.15*Math.pow(Math.log(3.25*Math.pow(fsiya,2)),.4)*Math.pow(fsiya,.8));
-        MathJax.Hub.Queue(["Text",formula,"Solomon = 1.15 * \ln{(3.25 * Siya^2)}^{0.4} * Siya^{0.8}"]);
-    }
-        
-    return !isNaN(result) ? result : '';
 }
 
 function iris_calc(fsiya) {
