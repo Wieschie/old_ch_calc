@@ -61,15 +61,6 @@ button {
     margin-bottom: 12px;
 }
 
-/* morg checkbox */
-#morg_owned {
-    margin-bottom:20px;
-    margin-top:5px;
-    float:left;
-    width:20px;
-    height:20px
-}
-
 /* tooltips */
 #pup {
     position:absolute;
@@ -94,8 +85,6 @@ button {
     overflow:auto;
     padding-bottom: 170px;
 }  
-
-
 
 .formulas{
     display:none;
