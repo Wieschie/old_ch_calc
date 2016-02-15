@@ -1,8 +1,8 @@
-$('#siya').change(function(){
+$('#idle_siya').change(function(){
     mathmagic();
 });
 
-$('#siya').keyup(function(){
+$('#idle_siya').keyup(function(){
     mathmagic();
 });    
 
@@ -11,26 +11,29 @@ $('#savegame').keyup(import_save);
 
 function mathmagic(fsiya) {
     if(typeof fsiya == "undefined")
-        fsiya = parseFloat($('#siya').val());
+        fsiya = parseFloat($('#idle_siya').val());
     
-    $('#morg').val(numeral(morg_calc(fsiya)).format('0,0'));
+    $('#idle_morg').val(numeral(morg_calc(fsiya)).format('0,0'));
     
-    $('#gold').val(numeral(gold_calc(fsiya)).format('0,0'));
+    $('#idle_gold').val(numeral(gold_calc(fsiya)).format('0,0'));
     
-    $('#solomon').val(numeral(solomon_calc(fsiya)).format('0,0'));
+    $('#idle_solomon').val(numeral(solomon_calc(fsiya)).format('0,0'));
 
-    $('#iris').val(numeral(iris_calc(fsiya)).format('0,0'));
+    $('#idle_iris').val(numeral(iris_calc(fsiya)).format('0,0'));
     
-    $('#click').val(numeral(click_calc(fsiya)).format('0,0'));
+    $('#idle_click').val(numeral(click_calc(fsiya)).format('0,0'));
     
-    $('#jugg').val(numeral(jugg_calc(fsiya)).format('0,0'));
+    $('#idle_jugg').val(numeral(jugg_calc(fsiya)).format('0,0'));
 }
 
 function morg_calc(fsiya) {
 // always assume morgulis because calc is valid.   See https://www.reddit.com/r/ClickerHeroes/comments/43yt7n/updated_simpler_rule_of_thumb_calculator/czmabq0
     if(typeof fsiya == "undefined")
-        fsiya = parseFloat($('#siya').val());
-    
+        fsiya = parseFloat($('#idle_siya').val());
+
+    if(fsiya==0)
+        return 0;
+
     if(fsiya<100)
         result = Math.ceil(Math.pow((fsiya+1),2));
     else
@@ -39,7 +42,6 @@ function morg_calc(fsiya) {
     
     var math = MathJax.Hub.getAllJax("morg_formula")[0];
 
-    $('#soul_label').html('Morgulis:');
     if(fsiya<100)
         MathJax.Hub.Queue(["Text",math,"Morgulis = (Siya+1)^2"]);
     else
@@ -88,16 +90,30 @@ function jugg_calc(fsiya) {
     return !isNaN(result) ? result : '';
 }
 
-function level_up(add_levels) {
+function is_idle() {
     var accordion_visible_index =  $( "#accordion" ).accordion( "option", "active" );
-    if( accordion_visible_index == 0 )//idle
+    return accordion_visible_index == 0;
+}
+
+function is_hybrid() {
+    var accordion_visible_index =  $( "#accordion" ).accordion( "option", "active" );
+    return accordion_visible_index == 1;
+}
+
+function is_active() {
+    var accordion_visible_index =  $( "#accordion" ).accordion( "option", "active" );
+    return accordion_visible_index == 2;
+}
+
+function level_up(add_levels) {
+    if( is_idle() )
     {
-        var level = parseInt(siya.value) || 0;
+        var level = parseInt(idle_siya.value) || 0;
         level += add_levels;
-        siya.value = level;
+        idle_siya.value = level;
         mathmagic();
     } 
-    else if( accordion_visible_index == 1 )//hybrid
+    else if( is_hybrid() )
     {
     } 
     else //active
@@ -150,7 +166,8 @@ function import_save() {
 }
 
 function show_math() {
-    $('#formulas').toggle();
-    $('#formula_button').html( $('#formulas').is(':visible') ? "Hide Formulas" : "Show Formulas" );
+
+    $('#idle_formulas').toggle();
+    $('#formula_button').html( $('#idle_formulas').is(':visible') ? "Hide Formulas" : "Show Formulas" );
 }
 
