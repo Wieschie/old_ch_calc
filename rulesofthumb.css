@@ -48,6 +48,7 @@ input {
     padding: 2px;
     margin: 2px;
 }
+
 button {
     float: left;
     font: 20px Arial, sans-serif;
@@ -58,6 +59,7 @@ button {
 #formula_button {
     float: none;
     font-size: 16px;
+    margin-top: 20px;
     margin-bottom: 12px;
 }
 
@@ -89,9 +91,9 @@ button {
 .formulas{
     display:none;
     overflow:auto;
-    margin-top:-150px;
+    /* margin-top:-150px;  */
     /*height:200px;*/
-    padding-bottom: 170px;
+    padding-bottom: 10px;
 }
 
 .MathJax {

@@ -109,6 +109,27 @@
             <label>Save import <a onclick="void(0)" onmouseover="nhpup.popup('This is optional - you can still manually enter your Siyalatas level');">(<u>?</u>)</a>:</label> 
             <input type="text" placeholder="Paste your save here." id="savegame">
           </div>
+
+
+          <!-- These formulas are the default, first visible formulas.  They may get updated during calculations -->
+          <div class='formulas' id='formulas'>
+            <div id='morg_formula'>
+              $$Morgulis = (Siya+1)^2$$
+            </div>
+            $$Gold\ ancients = .927 * Siya$$
+            <div id='solomon_formula'>
+              $$Solomon = Minimum( Siya, 1.15 * \ln{(3.25 * Siya^2)}^{0.4} * Siya^{0.8} )$$
+            </div>
+            <a onclick="void(0)" onmouseover="nhpup.popup('This calculates a rough optimal zone, then subtracts 1000 and rounds to the nearest 3 or 8.');">
+              $$Iris = 5*\lfloor\frac{371 * \ln({Siya}) - 2075}{5}\rfloor - 2$$</a>
+
+            $$Click\ ancients = .5 * Siya$$
+            $$Juggernaut = (Siya*0.5)^{0.8}$$
+          </div>
+          
+          <button onclick='show_math()' id="formula_button">Show Formulas</button><br>
+
+
         </div>
         <h3>Hybrid</h3>
         <div id="hybrid_accordion">Coming soon</div>
@@ -117,24 +138,8 @@
       </div>
     </div>
     
-    <!-- These formulas are the default, first visible formulas.  They may get updated during calculations -->
-    <div class='formulas' id='formulas'>
-      <div id='morg_formula'>
-        $$Morgulis = (Siya+1)^2$$
-      </div>
-      $$Gold\ ancients = .927 * Siya$$
-      <div id='solomon_formula'>
-        $$Solomon = Minimum( Siya, 1.15 * \ln{(3.25 * Siya^2)}^{0.4} * Siya^{0.8} )$$
-      </div>
-      <a onclick="void(0)" onmouseover="nhpup.popup('This calculates a rough optimal zone, then subtracts 1000 and rounds to the nearest 3 or 8.');">
-        $$Iris = 5*\lfloor\frac{371 * \ln({Siya}) - 2075}{5}\rfloor - 2$$</a>
-
-      $$Click\ ancients = .5 * Siya$$
-      $$Juggernaut = (Siya*0.5)^{0.8}$$
-    </div>
 
     <div id='footer'>
-      <button onclick='show_math()' id="formula_button">Show Formulas</button><br>
       by <a href="https://github.com/alexbonjour/rules-of-thumb">alexbonjour</a> forked from /u/Wieschie's calculator <br>
       <a href="https://github.com/alexbonjour/rules-of-thumb">Github here. Suggestion or issue?  Pay a visit.</a> <br>
       Formula source: <a href="https://www.reddit.com/r/ClickerHeroes/comments/3y57jd/updated_rules_of_thumb/">Updated Rules of Thumb</a>
