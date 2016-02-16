@@ -25,7 +25,7 @@ function idle_mathmagic() {
     
     $('#idle_gold').val(numeral(gold_calc(fsiya)).format('0,0'));
     
-    $('#idle_solomon').val(numeral(solomon_calc(fsiya)).format('0,0'));
+    $('#idle_solomon').val(numeral(idle_solomon_calc(fsiya)).format('0,0'));
 
     $('#idle_iris').val(numeral(iris_calc(fsiya)).format('0,0'));
 }
@@ -37,7 +37,7 @@ function hybrid_mathmagic() {
     
     $('#hybrid_gold').val(numeral(gold_calc(fsiya)).format('0,0'));
     
-    $('#hybrid_solomon').val(numeral(solomon_calc(fsiya)).format('0,0'));
+    $('#hybrid_solomon').val(numeral(hybrid_solomon_calc(fsiya)).format('0,0'));
 
     $('#hybrid_iris').val(numeral(iris_calc(fsiya)).format('0,0'));
     
@@ -93,18 +93,8 @@ function gold_calc(fsiya) {
     return !isNaN(result) ? result : '';
 }
 
-function solomon_calc(fsiya) {
-    var idle_formula = MathJax.Hub.getAllJax("idle_solomon_formula")[0];
-    var hybrid_formula = MathJax.Hub.getAllJax("hybrid_solomon_formula")[0];
-    var formula; 
-    if( is_idle() )
-    {
-        formula = idle_formula;
-    }
-    else if( is_hybrid() )
-    {
-        formula = hybrid_formula;
-    }
+function idle_solomon_calc(fsiya) {
+    var formula = MathJax.Hub.getAllJax("idle_solomon_formula")[0];
 
     calcSolomon = Math.ceil(1.15*Math.pow(Math.log(3.25*Math.pow(fsiya,2)),.4)*Math.pow(fsiya,.8));
 
@@ -118,6 +108,13 @@ function solomon_calc(fsiya) {
     }
     
     return !isNaN(result) ? result : '';
+}
+
+function hybrid_solomon_calc(fsiya) {
+    //see https://www.reddit.com/r/ClickerHeroes/comments/3h5al8/extending_mathematical_analysis_to_hybrid_and/
+    calcSolomon = Math.ceil(1.32*Math.pow(Math.log(4.65*Math.pow(fsiya,2)),.4)*Math.pow(fsiya,.8));
+
+    return !isNaN(calcSolomon) ? calcSolomon : '';
 }
 
 function iris_calc(fsiya) {
