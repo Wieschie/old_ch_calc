@@ -48,8 +48,10 @@
 
     <!-- large number formatting -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/1.4.5/numeral.min.js"></script>
-    
+
+    <script src="scripts/mathmagician_2.js"></script>
   </head>
+
   <body>
 
     <header>
@@ -95,29 +97,66 @@
             <input type="text" name="idle_iris" id="idle_iris" value="0" readonly>
           </div>
           
+          <!-- These formulas are the default, first visible formulas.  They may get updated during calculations -->
+          <div class='formulas' id='idle_formulas'>
+            <div id='idle_morg_formula'>
+              $$Morgulis = (Siya+1)^2$$
+            </div>
+            $$Gold\ ancients = .927 * Siya$$
+            <div id='idle_solomon_formula'>
+              $$Solomon = Minimum( Siya, 1.15 * \ln{(3.25 * Siya^2)}^{0.4} * Siya^{0.8} )$$
+            </div>
+            <a onclick="void(0)" onmouseover="nhpup.popup('This calculates a rough optimal zone, then subtracts 1000 and rounds to the nearest 3 or 8.');">
+              $$Iris = 5*\lfloor\frac{371 * \ln({Siya}) - 2075}{5}\rfloor - 2$$</a>
+          </div>
+
+          <button onclick='show_math()' id="idle_formula_button">Show Formulas</button><br>
+
+        </div>
+        <h3><div class="newthing">Hybrid Builds - Entery your Siyalatas Level</div><div class="newpic hideafter"><img src="images/new.png" alt="New!"></div></h3>
+        <div id="hybrid_accordion">
           <div class="flex">
-            <label>Click ancients <a onclick = "void(0)" onmouseover="nhpup.popup('Bhaal, Frags, and Pluto. If you are going with an idle or hybrid build, it is not recommended to purchase any click ancients until Siyalatas is at least 1000');">(<u>?</u>)</a>:</label> 
-            <input type="text" name="idle_click" id="idle_click" value="0" readonly>
+            <label id="base_label">Siyalatas / Argaiv:</label>
+            <input type="number" name="hybrid_siya" id="hybrid_siya" value="0" autofocus>
+          </div>
+          
+          <div class="flex">
+            <label id="soul_label">Morgulis:</label>
+            <input type="text" name="hybrid_morg" id="hybrid_morg" value="0" readonly>
+          </div>
+          
+          <div class="flex">
+            <label>Gold ancients <a onclick="void(0)" onmouseover="nhpup.popup('Libertas, Mammon, and Mimzee.');">(<u>?</u>)</a>:</label> 
+            <input type="text" name="hybrid_gold" id="hybrid_gold" value="0" readonly>
+          </div>
+          
+          <div class="flex">
+            <label>Solomon:</label>
+            <input type="text" name="hybrid_solomon" id="hybrid_solomon" value="0" readonly>
+          </div>
+          
+          <div class="flex">
+            <label>Iris <a onclick="void(0)" onmouseover="nhpup.popup('This is a rough estimate, and assumes all other ancients are even with Siya per the rules.  If you like lazy runs drop 10 to 50 levels.');">(<u>?</u>)</a>:</label> 
+            <input type="text" name="hybrid_iris" id="hybrid_iris" value="0" readonly>
+          </div>
+          
+          <div class="flex">
+            <label>Click ancients <a onclick = "void(0)" onmouseover="nhpup.popup('Bhaal, Frags, and Pluto. If you are going with an idle or hybrid build, it is not recommended to purchase any click ancients until Siyalatas is at least 1700-1800');">(<u>?</u>)</a>:</label> 
+            <input type="text" name="hybrid_click" id="hybrid_click" value="0" readonly>
           </div>
           
           <div class="flex">
             <label>Juggernaut:</label>
-            <input type="text" name="idle_jugg" id="idle_jugg" value="0" readonly>
+            <input type="text" name="hybrid_jugg" id="hybrid_jugg" value="0" readonly>
           </div>
           
-          <div class="flex">
-            <label>Save import <a onclick="void(0)" onmouseover="nhpup.popup('This is optional - you can still manually enter your Siyalatas level');">(<u>?</u>)</a>:</label> 
-            <input type="text" placeholder="Paste your save here." id="savegame">
-          </div>
-
-
           <!-- These formulas are the default, first visible formulas.  They may get updated during calculations -->
-          <div class='formulas' id='idle_formulas'>
-            <div id='morg_formula'>
+          <div class='formulas' id='hybrid_formulas'>
+            <div id='hybrid_morg_formula'>
               $$Morgulis = (Siya+1)^2$$
             </div>
             $$Gold\ ancients = .927 * Siya$$
-            <div id='solomon_formula'>
+            <div id='hybrid_solomon_formula'>
               $$Solomon = Minimum( Siya, 1.15 * \ln{(3.25 * Siya^2)}^{0.4} * Siya^{0.8} )$$
             </div>
             <a onclick="void(0)" onmouseover="nhpup.popup('This calculates a rough optimal zone, then subtracts 1000 and rounds to the nearest 3 or 8.');">
@@ -127,24 +166,24 @@
             $$Juggernaut = (Siya*0.5)^{0.8}$$
           </div>
           
-          <button onclick='show_math()' id="formula_button">Show Formulas</button><br>
-
-
-        </div>
-        <h3>Hybrid</h3>
-        <div id="hybrid_accordion">Coming soon</div>
-        <h3>Active</h3>
-        <div id="active_accordion">Coming soon, but not quite as soon as hybrid</div>
+          <button onclick='show_math()' id="hybrid_formula_button">Show Formulas</button><br>
+          </div>
+        <h3>Active Builds - Coming Soon</h3>
+        <div id="active_accordion">Coming soon</div>
       </div>
     </div>
-    
+
+    <div class="flex">
+      <label>Save import <a onclick="void(0)" onmouseover="nhpup.popup('This is optional - you can still manually enter your levels');">(<u>?</u>)</a>:</label> 
+      <input type="text" placeholder="Paste your save here." id="savegame">
+    </div>
+
 
     <div id='footer'>
       by <a href="https://github.com/alexbonjour/rules-of-thumb">alexbonjour</a> forked from /u/Wieschie's calculator <br>
+      <div class="hideafter">"New" Icon by <a href="http://dryicons.com">http://dryicons.com</a><br></div>
       <a href="https://github.com/alexbonjour/rules-of-thumb">Github here. Suggestion or issue?  Pay a visit.</a> <br>
       Formula source: <a href="https://www.reddit.com/r/ClickerHeroes/comments/3y57jd/updated_rules_of_thumb/">Updated Rules of Thumb</a>
     </div>
 
-    
-    <script src="scripts/mathmagician_2.js"></script>
 </html>

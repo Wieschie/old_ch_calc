@@ -1,17 +1,25 @@
-$('#idle_siya').change(function(){
-    mathmagic();
+$(function(){
+    $('#savegame').keyup(import_save);
+
+    $('#idle_siya').change(idle_mathmagic);
+    $('#idle_siya').keyup(idle_mathmagic);
+
+    $('#hybrid_siya').change(hybrid_mathmagic);
+    $('#hybrid_siya').keyup(hybrid_mathmagic);
+
+    //new hybrid tab 2/16/16- show "new" until 3/16/16 then stop
+    var untildate = new Date('2016-03-16'); 
+    var now = new Date();
+    if(now > untildate)
+    {
+        //It's after "end" date
+        $('.hideafter').each(function(index,obj) { $(obj).hide(); });
+    }
 });
 
-$('#idle_siya').keyup(function(){
-    mathmagic();
-});    
 
-$('#savegame').keyup(import_save);
-
-
-function mathmagic(fsiya) {
-    if(typeof fsiya == "undefined")
-        fsiya = parseFloat($('#idle_siya').val());
+function idle_mathmagic() {
+    var fsiya = parseFloat($('#idle_siya').val());
     
     $('#idle_morg').val(numeral(morg_calc(fsiya)).format('0,0'));
     
@@ -20,16 +28,35 @@ function mathmagic(fsiya) {
     $('#idle_solomon').val(numeral(solomon_calc(fsiya)).format('0,0'));
 
     $('#idle_iris').val(numeral(iris_calc(fsiya)).format('0,0'));
+}
+
+function hybrid_mathmagic() {
+    var fsiya = parseFloat($('#hybrid_siya').val());
     
-    $('#idle_click').val(numeral(click_calc(fsiya)).format('0,0'));
+    $('#hybrid_morg').val(numeral(morg_calc(fsiya)).format('0,0'));
     
-    $('#idle_jugg').val(numeral(jugg_calc(fsiya)).format('0,0'));
+    $('#hybrid_gold').val(numeral(gold_calc(fsiya)).format('0,0'));
+    
+    $('#hybrid_solomon').val(numeral(solomon_calc(fsiya)).format('0,0'));
+
+    $('#hybrid_iris').val(numeral(iris_calc(fsiya)).format('0,0'));
+    
+    $('#hybrid_click').val(numeral(click_calc(fsiya)).format('0,0'));
+    
+    $('#hybrid_jugg').val(numeral(jugg_calc(fsiya)).format('0,0'));
+}
+
+function mathmagic() {
+    if( is_idle() )
+        idle_mathmagic();
+    else( is_hybrid() )
+        hybrid_mathmagic();
 }
 
 function morg_calc(fsiya) {
 // always assume morgulis because calc is valid.   See https://www.reddit.com/r/ClickerHeroes/comments/43yt7n/updated_simpler_rule_of_thumb_calculator/czmabq0
-    if(typeof fsiya == "undefined")
-        fsiya = parseFloat($('#idle_siya').val());
+//    if(typeof fsiya == "undefined")
+//        fsiya = parseFloat($('#idle_siya').val());
 
     if(fsiya==0)
         return 0;
@@ -40,12 +67,23 @@ function morg_calc(fsiya) {
         result = Math.ceil(Math.pow((fsiya+22),2));
     
     
-    var math = MathJax.Hub.getAllJax("morg_formula")[0];
-
-    if(fsiya<100)
-        MathJax.Hub.Queue(["Text",math,"Morgulis = (Siya+1)^2"]);
-    else
-        MathJax.Hub.Queue(["Text",math,"Morgulis = (Siya+22)^2"]);
+    var formula;
+    if( is_idle() )
+    {
+        formula = MathJax.Hub.getAllJax("idle_morg_formula")[0];
+    }
+    else if( is_hybrid() )
+    {
+        formula = MathJax.Hub.getAllJax("hybrid_morg_formula")[0];
+    }
+    
+    if(formula)
+    {
+        if(fsiya<100)
+            MathJax.Hub.Queue(["Text",formula,"Morgulis = (Siya+1)^2"]);
+        else
+            MathJax.Hub.Queue(["Text",formula,"Morgulis = (Siya+22)^2"]);
+    }
 
     return !isNaN(result) ? result : '';
 }
@@ -56,8 +94,17 @@ function gold_calc(fsiya) {
 }
 
 function solomon_calc(fsiya) {
-    var formula = MathJax.Hub.getAllJax("solomon_formula")[0];
-
+    var idle_formula = MathJax.Hub.getAllJax("idle_solomon_formula")[0];
+    var hybrid_formula = MathJax.Hub.getAllJax("hybrid_solomon_formula")[0];
+    var formula; 
+    if( is_idle() )
+    {
+        formula = idle_formula;
+    }
+    else if( is_hybrid() )
+    {
+        formula = hybrid_formula;
+    }
 
     calcSolomon = Math.ceil(1.15*Math.pow(Math.log(3.25*Math.pow(fsiya,2)),.4)*Math.pow(fsiya,.8));
 
@@ -111,10 +158,14 @@ function level_up(add_levels) {
         var level = parseInt(idle_siya.value) || 0;
         level += add_levels;
         idle_siya.value = level;
-        mathmagic();
+        idle_mathmagic();
     } 
     else if( is_hybrid() )
     {
+        var level = parseInt(hybrid_siya.value) || 0;
+        level += add_levels;
+        hybrid_siya.value = level;
+        hybrid_mathmagic();
     } 
     else //active
     {
@@ -122,10 +173,20 @@ function level_up(add_levels) {
 }
 
 function multiply_up(m) {
-    var level = parseFloat(siya.value) || 0;
-    level *= m;
-    siya.value = Math.ceil(level);
-    mathmagic();
+    if( is_idle() )
+    {
+        var level = parseFloat(idle_siya.value) || 0;
+        level *= m;
+        idle_siya.value = Math.ceil(level);
+        idle_mathmagic();
+    }
+    else if( is_hybrid() )
+    {
+        var level = parseFloat(hybrid_siya.value) || 0;
+        level *= m;
+        hybrid_siya.value = Math.ceil(level);
+        hybrid_mathmagic();
+    }
 }
 
 
@@ -133,41 +194,48 @@ function multiply_up(m) {
 const ANTI_CHEAT_CODE = "Fe12NAfA3R6z4k0z";
 const SALT = "af0ik392jrmt0nsfdghy0";
 function import_save() {
-        var txt = $('#savegame').val();
- 
-        if (txt.search(ANTI_CHEAT_CODE) != -1) {
-                var result = txt.split(ANTI_CHEAT_CODE);
-                txt = "";
-                for (var i = 0; i < result[0].length; i += 2) {
-                        txt += result[0][i];
-                }
-                if (CryptoJS.MD5(txt + SALT) != result[1]) {
-                        // alert("This is not a valid Clicker Heroes savegame!");
-                        return;
-                }
+    var txt = $('#savegame').val();
+    
+    if (txt.search(ANTI_CHEAT_CODE) != -1) {
+        var result = txt.split(ANTI_CHEAT_CODE);
+        txt = "";
+        for (var i = 0; i < result[0].length; i += 2) {
+            txt += result[0][i];
         }
-        var data = $.parseJSON(atob(txt));
- 
-    $('#morg').val(morg_calc());
-
- 
-        if(data.ancients.ancients.hasOwnProperty(5))    {
-                // has Siyalatas
-                siya.value = data.ancients.ancients[5].level;
-                $('#base_label').html('Siyalatas:');
-                mathmagic();
+        if (CryptoJS.MD5(txt + SALT) != result[1]) {
+            // alert("This is not a valid Clicker Heroes savegame!");
+            return;
         }
-        else if(data.ancients.ancients.hasOwnProperty(28))      {
-                // has Argaiv
-                siya.value = data.ancients.ancients[28].level;
-                $('#base_label').html('Argaiv:');
-                mathmagic();
-        }
+    }
+    var data = $.parseJSON(atob(txt));
+    
+    if(data.ancients.ancients.hasOwnProperty(5))    {
+        // has Siyalatas
+        idle_siya.value = data.ancients.ancients[5].level;
+        idle_mathmagic();
+        hybrid_siya.value = data.ancients.ancients[5].level;
+        hybrid_mathmagic();
+    }
+    else if(data.ancients.ancients.hasOwnProperty(28))      {
+        // has Argaiv
+        idle_siya.value = data.ancients.ancients[28].level;
+        idle_mathmagic();
+        hybrid_siya.value = data.ancients.ancients[28].level;
+        hybrid_mathmagic();
+    }
 }
 
 function show_math() {
 
-    $('#idle_formulas').toggle();
-    $('#formula_button').html( $('#idle_formulas').is(':visible') ? "Hide Formulas" : "Show Formulas" );
+    if( is_idle() )
+    {
+        $('#idle_formulas').toggle();
+        $('#idle_formula_button').html( $('#idle_formulas').is(':visible') ? "Hide Formulas" : "Show Formulas" );
+    }
+    else if( is_hybrid() )
+    {
+        $('#hybrid_formulas').toggle();
+        $('#hybrid_formula_button').html( $('#hybrid_formulas').is(':visible') ? "Hide Formulas" : "Show Formulas" );
+    }
 }
 

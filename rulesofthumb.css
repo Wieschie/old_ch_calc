@@ -56,7 +56,10 @@ button {
     margin: 2px;
 }
 
-#formula_button {
+
+#idle_formula_button, 
+#hybrid_formula_button,
+#active_formula_button {
     float: none;
     font-size: 16px;
     margin-top: 20px;
@@ -85,7 +88,7 @@ button {
 
 #main {
     overflow:auto;
-    padding-bottom: 170px;
+    padding-bottom: 10px;
 }  
 
 .formulas{
@@ -102,8 +105,17 @@ button {
 
 #footer {
     position: relative;
-    margin-top: -150px;
+    margin-top: 15px; 
     height: 150px;
     clear:both;
     font:16px Arial,sans-serif;
 } 
+
+.newthing,
+.newpic {
+    display:inline;
+}
+
+.hideafter {
+//    background: red;
+}
