@@ -27,7 +27,7 @@ function idle_mathmagic() {
     
     $('#idle_solomon').val(numeral(idle_solomon_calc(fsiya)).format('0,0'));
 
-    $('#idle_iris').val(numeral(iris_calc(fsiya)).format('0,0'));
+    $('#idle_iris').val(numeral(iris_calc(fsiya,1000)).format('0,0'));
 }
 
 function hybrid_mathmagic() {
@@ -39,7 +39,7 @@ function hybrid_mathmagic() {
     
     $('#hybrid_solomon').val(numeral(hybrid_solomon_calc(fsiya)).format('0,0'));
 
-    $('#hybrid_iris').val(numeral(iris_calc(fsiya)).format('0,0'));
+    $('#hybrid_iris').val(numeral(iris_calc(fsiya,302)).format('0,0'));
     
     $('#hybrid_click').val(numeral(click_calc(fsiya)).format('0,0'));
     
@@ -117,8 +117,8 @@ function hybrid_solomon_calc(fsiya) {
     return !isNaN(calcSolomon) ? calcSolomon : '';
 }
 
-function iris_calc(fsiya) {
-    result = Math.ceil((371 * Math.log(fsiya)) - 2075);
+function iris_calc(fsiya,flevels) {
+    result = Math.ceil((371 * Math.log(fsiya)) - 1075 - flevels);
     result = Math.max(5*Math.round(result/5) - 2,0);
     result = result >=98 ? result : 0;
     return !isNaN(result) ? result : '';
