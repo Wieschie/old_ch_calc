@@ -70,20 +70,21 @@
       </div>
       
       <div id="accordion">
+<!-- ************** IDLE BUILDS ACCORDION ************** -->
         <h3>Idle Builds - Enter your Siyalatas Level</h3>
         <div id="idle_accordion">
           <div class="flex">
-            <label id="base_label">Siyalatas / Argaiv:</label>
+            <label>Siyalatas, Argaiv:</label>
             <input type="number" name="idle_siya" id="idle_siya" value="0" autofocus>
           </div>
           
           <div class="flex">
-            <label id="soul_label">Morgulis:</label>
+            <label>Morgulis:</label>
             <input type="text" name="idle_morg" id="idle_morg" value="0" readonly>
           </div>
           
           <div class="flex">
-            <label>Gold ancients <a onclick="void(0)" onmouseover="nhpup.popup('Libertas, Mammon, and Mimzee.');">(<u>?</u>)</a>:</label> 
+            <label>Libertas, Mammon, Mimzee:</label> 
             <input type="text" name="idle_gold" id="idle_gold" value="0" readonly>
           </div>
           
@@ -102,7 +103,7 @@
             <div id='idle_morg_formula'>
               $$Morgulis = (Siya+1)^2$$
             </div>
-            $$Gold\ ancients = .927 * Siya$$
+            $$Libertas\ Mammon\ Mimzee = .927 * Siya$$
             <div id='idle_solomon_formula'>
               $$Solomon = Minimum( Siya, 1.15 * \ln{(3.25 * Siya^2)}^{0.4} * Siya^{0.8} )$$
             </div>
@@ -114,20 +115,23 @@
           <button onclick='show_math()' id="idle_formula_button">Show Formulas</button><br>
 
         </div>
+
+
+<!-- ************** HYBRID BUILDS ACCORDION ************** -->
         <h3><div class="newthing">Hybrid Builds - Enter your Siyalatas Level</div><div class="newpic hideafter"><img src="images/new.png" alt="New!"></div></h3>
         <div id="hybrid_accordion">
           <div class="flex">
-            <label id="base_label">Siyalatas / Argaiv:</label>
+            <label>Siyalatas, Argaiv:</label>
             <input type="number" name="hybrid_siya" id="hybrid_siya" value="0" autofocus>
           </div>
           
           <div class="flex">
-            <label id="soul_label">Morgulis:</label>
+            <label>Morgulis:</label>
             <input type="text" name="hybrid_morg" id="hybrid_morg" value="0" readonly>
           </div>
           
           <div class="flex">
-            <label>Gold ancients <a onclick="void(0)" onmouseover="nhpup.popup('Libertas, Mammon, and Mimzee.');">(<u>?</u>)</a>:</label> 
+            <label>Libertas, Mammon, and Mimzee:</label> 
             <input type="text" name="hybrid_gold" id="hybrid_gold" value="0" readonly>
           </div>
           
@@ -137,12 +141,7 @@
           </div>
           
           <div class="flex">
-            <label>Iris Range <a onclick="void(0)" onmouseover="nhpup.popup('Iris value depends largely on play style and preference.');">(<u>?</u>)</a>:</label> 
-            <input type="text" name="hybrid_iris" id="hybrid_iris" value="0" readonly>
-          </div>
-          
-          <div class="flex">
-            <label>Click ancients <a onclick = "void(0)" onmouseover="nhpup.popup('Bhaal, Frags, and Pluto. If you are going with an idle or hybrid build, it is not recommended to purchase any click ancients until Siyalatas is at least 1700-1800');">(<u>?</u>)</a>:</label> 
+            <label>Bhaal, Fragsworth, Pluto:</label> 
             <input type="text" name="hybrid_click" id="hybrid_click" value="0" readonly>
           </div>
           
@@ -151,27 +150,86 @@
             <input type="text" name="hybrid_jugg" id="hybrid_jugg" value="0" readonly>
           </div>
           
+          <div class="flex">
+            <label>Iris Range <a onclick="void(0)" onmouseover="nhpup.popup('Iris value depends largely on play style and preference.');">(<u>?</u>)</a>:</label> 
+            <input type="text" name="hybrid_iris" id="hybrid_iris" value="0" readonly>
+          </div>
+          
           <!-- These formulas are the default, first visible formulas.  They may get updated during calculations -->
           <div class='formulas' id='hybrid_formulas'>
             <div id='hybrid_morg_formula'>
               $$Morgulis = (Siya+1)^2$$
             </div>
-            $$Gold\ ancients = .927 * Siya$$
+            $$Libertas\ Mammon\ Mimzee = .927 * Siya$$
             <div id='hybrid_solomon_formula'>
               $$Solomon =                1.32 * \ln{(4.65 * Siya^2)}^{0.4} * Siya^{0.8}$$
             </div>
+            $$Bhaal\ Fragsworth\ Pluto = .5 * Siya$$
+            $$Juggernaut = (Siya*0.5)^{0.8}$$
             <a onclick="void(0)" onmouseover="nhpup.popup('This calculates a rough optimal zone, then subtracts 1000 for the lower bound and 302 for the upper bound and rounds both to the nearest 3 or 8.');">
               $$Iris Lower Bound = 5*\lfloor\frac{371 * \ln({Siya}) - 1075 - 1000}{5}\rfloor - 2$$
               $$Iris Upper Bound = 5*\lfloor\frac{371 * \ln({Siya}) - 1075 - 302}{5}\rfloor - 2$$</a>
-
-            $$Click\ ancients = .5 * Siya$$
-            $$Juggernaut = (Siya*0.5)^{0.8}$$
           </div>
           
           <button onclick='show_math()' id="hybrid_formula_button">Show Formulas</button><br>
+        </div>
+        
+<!-- ************** ACTIVE BUILDS ACCORDION ************** -->        
+        <h3><div class="newthing">Active Builds - Enter your Fragsworth Level</div><div class="newpic hideafter"><img src="images/new.png" alt="New!"></div></h3>
+        <div id="active_accordion">
+          <div class="flex">
+            <label>Fragsworth, Argaiv:</label>
+            <input type="number" name="active_frags" id="active_frags" value="0" autofocus>
           </div>
-        <h3>Active Builds - Coming Soon</h3>
-        <div id="active_accordion">Coming soon</div>
+
+          <div class="flex">
+            <label>Bhaal:</label>
+            <input type="text" name="active_bhaal" id="active_bhaal" value="0" readonly>
+          </div>
+
+          <div class="flex">
+            <label>Juggernaut:</label>
+            <input type="text" name="active_jugg" id="active_jugg" value="0" readonly>
+          </div>
+          
+          <div class="flex">
+            <label>Mammon, Mimzee, Pluto:</label> 
+            <input type="text" name="active_gold" id="active_gold" value="0" readonly>
+          </div>
+          
+          <div class="flex">
+            <label>Morgulis:</label>
+            <input type="text" name="active_morg" id="active_morg" value="0" readonly>
+          </div>
+          
+          <div class="flex">
+            <label>Solomon:</label>
+            <input type="text" name="active_solomon" id="active_solomon" value="0" readonly>
+          </div>
+          
+<!--  I don't have an active calculation for Iris yet.   Created Issue #13
+          <div class="flex">
+            <label>Iris Range <a onclick="void(0)" onmouseover="nhpup.popup('Iris value depends largely on play style and preference.');">(<u>?</u>)</a>:</label> 
+            <input type="text" name="active_iris" id="active_iris" value="0" readonly>
+          </div>
+-->          
+          <!-- These formulas are the default, first visible formulas.  They may get updated during calculations -->
+          <div class='formulas' id='active_formulas'>
+            <div id='active_bhaal_formula'>$$Bhaal = Frags$$</div>
+            $$Juggernaut = Frags^{0.8}$$
+            $$Mammon\ Mimzee\ Pluto = .927 * Frags$$
+            <div id='active_morg_formula'>$$Morgulis = (Frags+1)^2$$</div>
+            <div id='active_solomon_formula'>
+              $$Solomon = Minimum( Frags, 1.21 * \ln{(3.73 * Frags^2)}^{0.4} * Frags^{0.8} )$$
+            </div>
+<!--  I don't have an active calculation for Iris yet.   Created Issue #13
+            <a onclick="void(0)" onmouseover="nhpup.popup('This calculates a rough optimal zone, then subtracts 1000 for the lower bound and 302 for the upper bound and rounds both to the nearest 3 or 8.');">
+              $$Iris Lower Bound = 5*\lfloor\frac{371 * \ln({Siya}) - 1075 - 1000}{5}\rfloor - 2$$
+              $$Iris Upper Bound = 5*\lfloor\frac{371 * \ln({Siya}) - 1075 - 302}{5}\rfloor - 2$$</a>
+          -->
+          </div>
+          <button onclick='show_math()' id="active_formula_button">Show Formulas</button><br>
+        </div>
       </div>
     </div>
 
