@@ -43,14 +43,27 @@ function hybrid_mathmagic() {
     
     $('#hybrid_click').val(numeral(click_calc(fsiya)).format('0,0'));
     
-    $('#hybrid_jugg').val(numeral(jugg_calc(fsiya)).format('0,0'));
+    $('#hybrid_jugg').val(numeral(hybrid_jugg_calc(fsiya)).format('0,0'));
+}
+
+function active_mathmagic() {
+    var ffrags = parseFloat($('#active_frags').val());
+
+    $('#active_bhaal').val(numeral(active_bhaal_calc(ffrags)).format('0,0'));
+
+    $('#active_jugg').val(numeral(active_jugg_calc(ffrags)).format('0,0'));
+    
+    $('#active_gold').val(numeral(gold_calc(ffrags)).format('0,0'));
+    
+    $('#active_morg').val(numeral(active_morg_calc(ffrags)).format('0,0'));
+
+    $('#active_solomon').val(numeral(active_solomon_calc(ffrags)).format('0,0'));
 }
 
 function irisDisplayText(fsiya, fLevelFrom, fLevelTo) {
     var irisFrom = iris_calc(fsiya,fLevelFrom);
     var irisTo = iris_calc(fsiya,fLevelTo);
-    console.log(irisFrom);
-    console.log(irisTo);
+
     if(irisFrom == irisTo)
     {
         return numeral(irisFrom).format('0,0');
@@ -102,6 +115,26 @@ function morg_calc(fsiya) {
     return !isNaN(result) ? result : '';
 }
 
+function active_morg_calc(ffrags) {
+    if(ffrags==0)
+        return 0;
+
+    var formula = MathJax.Hub.getAllJax("active_morg_formula")[0];
+
+    if(ffrags<100)
+    {
+        result = Math.ceil(Math.pow((ffrags+1),2));
+        MathJax.Hub.Queue(["Text",formula,"Morgulis = (Frags+1)^2"]);
+    }
+    else
+    {
+        result = Math.ceil(Math.pow((ffrags+13),2));
+        MathJax.Hub.Queue(["Text",formula,"Morgulis = (Frags+13)^2"]);
+    }
+
+    return !isNaN(result) ? result : '';
+}
+
 function gold_calc(fsiya) {
     result = Math.ceil(fsiya * 0.927);
     return !isNaN(result) ? result : '';
@@ -131,6 +164,40 @@ function hybrid_solomon_calc(fsiya) {
     return !isNaN(calcSolomon) ? calcSolomon : '';
 }
 
+function active_solomon_calc(ffrags) {
+    var formula = MathJax.Hub.getAllJax("active_solomon_formula")[0];
+
+    calcSolomon = Math.ceil(1.21*Math.pow(Math.log(3.73*Math.pow(ffrags,2)),.4)*Math.pow(ffrags,.8));
+
+    if(ffrags<calcSolomon) {
+        result = Math.ceil(ffrags);
+        MathJax.Hub.Queue(["Text",formula,"Solomon = Fragsworth"])
+    }
+    else {
+        result = calcSolomon;
+        MathJax.Hub.Queue(["Text",formula,"Solomon = 1.21 * \ln{(3.73 * Frags^2)}^{0.4} * Frags^{0.8}"]);
+    }
+    
+    return !isNaN(result) ? result : '';
+}
+
+function active_bhaal_calc(ffrags) {
+    var formula = MathJax.Hub.getAllJax("active_bhaal_formula")[0];
+
+    if(ffrags < 1000)
+    {
+        result=ffrags;
+        MathJax.Hub.Queue(["Text",formula,"Bhaal = Fragsworth"])
+    }
+    else
+    {
+        result=ffrags-90;
+        MathJax.Hub.Queue(["Text",formula,"Bhaal = Frags - 90"])
+    }
+
+    return !isNaN(result) ? result : '';
+}
+
 function iris_calc(fsiya,flevels) {
     result = Math.ceil((371 * Math.log(fsiya)) - 1075 - flevels);
     result = Math.max(5*Math.round(result/5) - 2,0);
@@ -143,8 +210,13 @@ function click_calc(fsiya) {
     return !isNaN(result) ? result : '';
 }
 
-function jugg_calc(fsiya) {
+function hybrid_jugg_calc(fsiya) {
     result = Math.ceil(Math.pow(fsiya * 0.5, 0.8));
+    return !isNaN(result) ? result : '';
+}
+
+function active_jugg_calc(ffrags) {
+    result = Math.ceil(Math.pow(ffrags, 0.8));
     return !isNaN(result) ? result : '';
 }
 
@@ -178,8 +250,12 @@ function level_up(add_levels) {
         hybrid_siya.value = level;
         hybrid_mathmagic();
     } 
-    else //active
+    else if( is_active() )
     {
+        var level = parseInt(active_frags.value) || 0;
+        level += add_levels;
+        active_frags.value = level;
+        active_mathmagic();
     }
 }
 
@@ -197,6 +273,13 @@ function multiply_up(m) {
         level *= m;
         hybrid_siya.value = Math.ceil(level);
         hybrid_mathmagic();
+    }
+    else if( is_active() )
+    {
+        var level = parseFloat(active_frags.value) || 0;
+        level *= m;
+        active_frags.value = Math.ceil(level);
+        active_mathmagic();
     }
 }
 
@@ -219,9 +302,12 @@ function import_save() {
         }
     }
     var data = $.parseJSON(atob(txt));
-    
+
+    console.log(data);
+
+    //idle and hybrid
     if(data.ancients.ancients.hasOwnProperty(5))    {
-        // has Siyalatas
+        // has Siyalatas == 5
         idle_siya.value = data.ancients.ancients[5].level;
         idle_mathmagic();
         hybrid_siya.value = data.ancients.ancients[5].level;
@@ -233,6 +319,18 @@ function import_save() {
         idle_mathmagic();
         hybrid_siya.value = data.ancients.ancients[28].level;
         hybrid_mathmagic();
+    }
+
+    //active
+    if(data.ancients.ancients.hasOwnProperty(19))    {
+        // has frags == 19
+        active_frags.value = data.ancients.ancients[19].level;
+        active_mathmagic();
+    }
+    else if(data.ancients.ancients.hasOwnProperty(28))      {
+        // has Argaiv
+        active_frags.value = data.ancients.ancients[28].level;
+        active_mathmagic();
     }
 }
 
@@ -247,6 +345,11 @@ function show_math() {
     {
         $('#hybrid_formulas').toggle();
         $('#hybrid_formula_button').html( $('#hybrid_formulas').is(':visible') ? "Hide Formulas" : "Show Formulas" );
+    }
+    else if( is_active() )
+    {
+        $('#active_formulas').toggle();
+        $('#active_formula_button').html( $('#active_formulas').is(':visible') ? "Hide Formulas" : "Show Formulas" );
     }
 }
 
