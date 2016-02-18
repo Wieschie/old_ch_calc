@@ -15,6 +15,7 @@ header{
 }
 .button_container {
     display: table;
+    padding: 8px;
 }
 
 .flex{
