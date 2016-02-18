@@ -27,7 +27,7 @@ function idle_mathmagic() {
     
     $('#idle_solomon').val(numeral(idle_solomon_calc(fsiya)).format('0,0'));
 
-    $('#idle_iris').val(numeral(iris_calc(fsiya,1000)).format('0,0'));
+    $('#idle_iris').val(irisDisplayText(fsiya,1000,302));
 }
 
 function hybrid_mathmagic() {
@@ -39,11 +39,25 @@ function hybrid_mathmagic() {
     
     $('#hybrid_solomon').val(numeral(hybrid_solomon_calc(fsiya)).format('0,0'));
 
-    $('#hybrid_iris').val(numeral(iris_calc(fsiya,302)).format('0,0'));
+    $('#hybrid_iris').val(irisDisplayText(fsiya,1000,302));
     
     $('#hybrid_click').val(numeral(click_calc(fsiya)).format('0,0'));
     
     $('#hybrid_jugg').val(numeral(jugg_calc(fsiya)).format('0,0'));
+}
+
+function irisDisplayText(fsiya, fLevelFrom, fLevelTo) {
+    var irisFrom = iris_calc(fsiya,fLevelFrom);
+    var irisTo = iris_calc(fsiya,fLevelTo);
+    console.log(irisFrom);
+    console.log(irisTo);
+    if(irisFrom == irisTo)
+    {
+        return numeral(irisFrom).format('0,0');
+    }
+    
+    return "~ " + numeral(irisFrom).format('0,0') 
+        + " to ~ " + numeral(irisTo).format('0,0');
 }
 
 function mathmagic() {
