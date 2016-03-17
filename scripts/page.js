@@ -8,7 +8,8 @@ $(function(){
     $('#hybrid_siya').keyup(hybrid_mathmagic);
 
     //new hybrid tab 2/16/16- show "new" until 3/16/16 then stop
-    var untildate = new Date('2016-03-16'); 
+    //new howto tab, 3/17/2016 = show "new" until 4/1/16 then stop
+    var untildate = new Date('2016-04-01'); 
     var now = new Date();
     if(now > untildate)
     {

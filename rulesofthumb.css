@@ -120,3 +120,8 @@ button {
 .hideafter {
 //    background: red;
 }
+
+li,
+#howto_accordion {
+    text-align: left;
+}
