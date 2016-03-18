@@ -83,7 +83,8 @@ function iris_calc(fsiya,flevels) {
     return !isNaN(result) ? result : '';
 }
 
-function click_calc(fsiya) {
+//hybrid bhaal, frag, pluto
+function hybrid_click_calc(fsiya) {
     result = Math.ceil(fsiya * 0.5);
     return !isNaN(result) ? result : '';
 }

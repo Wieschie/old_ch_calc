@@ -45,7 +45,7 @@ function hybrid_mathmagic() {
 
     $('#hybrid_iris').val(irisDisplayText(fsiya,1000,302));
     
-    $('#hybrid_click').val(numeral(click_calc(fsiya)).format('0,0'));
+    $('#hybrid_click').val(numeral(hybrid_click_calc(fsiya)).format('0,0'));
     
     $('#hybrid_jugg').val(numeral(hybrid_jugg_calc(fsiya)).format('0,0'));
 
