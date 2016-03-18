@@ -7,6 +7,9 @@ $(function(){
     $('#hybrid_siya').change(hybrid_mathmagic);
     $('#hybrid_siya').keyup(hybrid_mathmagic);
 
+    $('#active_frags').change(active_mathmagic);
+    $('#active_frags').keyup(active_mathmagic);
+
     //new hybrid tab 2/16/16- show "new" until 3/16/16 then stop
     //new howto tab, 3/17/2016 = show "new" until 4/1/16 then stop
     var untildate = new Date('2016-04-01'); 
