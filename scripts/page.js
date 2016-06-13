@@ -220,6 +220,18 @@ function import_save() {
     }
 
 
+    //3 is phan = tp boost
+    if( data.outsiders && data.outsiders.outsiders.hasOwnProperty(3) ) {
+        var phanLevel = data.outsiders.outsiders[3].level;
+        var totalAS = data.ancientSoulsTotal;
+        
+        if(totalAS > 0)
+            idle_tp.value = 1 + 49*(1 - Math.pow(Math.E,(-0.0001*totalAS))) + 50*(1 - Math.pow(Math.E,(-0.001*phanLevel)));
+        else
+            idle_tp.value = 0;
+        idle_mathmagic;
+    }
+
     //active
     // if(data.ancients.ancients.hasOwnProperty(19))    {
     //     // has frags == 19
