@@ -24,11 +24,11 @@ $(function(){
 function idle_mathmagic() {
     var fsiya = parseFloat($('#idle_siya').val());
     
-    $('#idle_morg').val(numeral(idle_or_hybrid_morg_calc(fsiya)).format('0,0'));
+    $('#idle_morg').text(numeral(idle_or_hybrid_morg_calc(fsiya)).format('0,0'));
     
-    $('#idle_gold').val(numeral(gold_calc(fsiya)).format('0,0'));
+    $('#idle_gold').text(numeral(gold_calc(fsiya)).format('0,0'));
     
-    $('#idle_solomon').val(numeral(idle_solomon_calc(fsiya)).format('0,0'));
+    $('#idle_solomon').text(numeral(idle_solomon_calc(fsiya)).format('0,0'));
 
 //    $('#idle_iris').val(irisDisplayText(fsiya,1000,302));
 

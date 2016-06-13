@@ -31,14 +31,17 @@ label{
     margin: 2px;
 }
 
+.resultvalue {
+    border-style: solid;
+    border-width: 1px;
+    width: 205px;
+    margin: 2px;
+}
+
+
 @media(max-width:400px){
     .flex{
         display:block;
-    }
-    
-    label{
-        width:100%;
-        text-align: center;
     }
 }
 
