@@ -206,7 +206,7 @@ function import_save() {
         idle_mathmagic();
 //        hybrid_siya.value = data.ancients.ancients[5].level;
 //        hybrid_mathmagic();
-        zoneInput.value = data.highestFinishedZone;
+        zoneInput.value = data.highestFinishedZonePersist;
         idle_mathmagic;
     }
     else if(data.ancients.ancients.hasOwnProperty(28))      {
@@ -215,7 +215,7 @@ function import_save() {
         idle_mathmagic();
 //        hybrid_siya.value = data.ancients.ancients[28].level;
 //        hybrid_mathmagic();
-        zoneInput.value = data.highestFinishedZone;
+        zoneInput.value = data.highestFinishedZonePersist;
         idle_mathmagic;
     }
 
