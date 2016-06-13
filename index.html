@@ -81,6 +81,11 @@
           </div>
           
           <div class="flex">
+             <label><a onclick="void(0)" onmouseover="nhpup.popup('Transcendent Power (TP) is found on the Outsiders tab.  It is 0 if you have not yet transcended.');"><label>Transcendent Power</a>:</label>
+            <input type="number" name="idle_tp" id="idle_tp" value="0">
+          </div>
+          
+          <div class="flex">
             <label>Morgulis:</label>
             <div class="resultvalue" id="idle_morg">0</div>
 <!--            <input type="text" name="idle_morg" id="idle_morg" value="0" readonly> -->
@@ -93,7 +98,7 @@
           </div>
           
           <div class="flex">
-            <label>Solomon (<font color="red">Wrong</font>):</label>
+            <label>Solomon:</label>
             <div class="resultvalue" id="idle_solomon">0</div>
             <!-- <input type="text" name="idle_solomon" id="idle_solomon" value="0" readonly> -->
           </div>
@@ -106,8 +111,10 @@
             </div>
             $$Libertas\ Mammon\ Mimzee = .926 * Siya$$
             <div id='idle_solomon_formula'>
-              $$Solomon = Siya^{0.8} * Alpha^{0.4}$$
+              $$Solomon[TP>0] = Siya^{0.8} * Alpha^{0.4}$$
               $$Alpha = 1.4067*ln(1+TP)/ln(HPscale)$$
+              
+              <a onclick="void(0)" onmouseover="nhpup.popup('Using 0.26 ROT until new equation determined.');">$$Solomon[TP==0] = Minimum( Siya, 1.15 * \ln{(3.25 * Siya^2)}^{0.4} * Siya^{0.8} )$$</a>
             </div>
           </div>
 
@@ -241,9 +248,10 @@
           Step by step do the following:
           <ol>
             <li> Enter your Siyalatas value.
+            <li> Enter your Transcendent Power, 0 if you have not yet transcended.
             <li> Raise the ancients to the levels in the calculator for all other Ancients
             <li> Press "+100" (or other button of your choice)
-            <li> Go to step 2.
+            <li> Go to step 3.
           </ol>
           
           You can level up by +10, +100, +10%, or even enter in any number you'd like in to the Siyalatas field.  If you regularly follow this pattern, you'll never be far from an optimal Ancient level.
@@ -264,7 +272,7 @@
       Site by <a href="https://github.com/alexbonjour/rules-of-thumb">Alex B.</a> forked from /u/Wieschie's calculator <br>
       <div class="hideafter">"New" Icon by <a href="http://dryicons.com">http://dryicons.com</a><br></div>
       <a href="https://github.com/alexbonjour/rules-of-thumb">Github here. Suggestion or issue?  Pay a visit.</a> <br>
-      Formula source: <a href="https://www.reddit.com/r/ClickerHeroes/comments/3y57jd/updated_rules_of_thumb/">Updated Rules of Thumb</a>
+      Formula source: <a href="https://www.reddit.com/r/ClickerHeroes/comments/4naohc/math_and_transcendance">Reddit Post - Math and Transcendance</a>
     </div>
 
 </html>

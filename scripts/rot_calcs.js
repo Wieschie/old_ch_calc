@@ -33,14 +33,22 @@ function gold_calc(fsiya) {
     return !isNaN(result) ? result : '';
 }
 
-function idle_solomon_calc(fsiya) {
+function idle_solomon_calc(fsiya,ftp) {
 
-    var calcSolomon = Math.ceil(1.15*Math.pow(Math.log(3.25*Math.pow(fsiya,2)),.4)*Math.pow(fsiya,.8));
+    var hpscale = 1.145; //first level
+    var alpha = 1.4067 * Math.log(1+ftp) / Math.log(hpscale);
+    var calcSolomon = Math.ceil(Math.pow(fsiya,0.8) * Math.pow(alpha,0.4));
 
-    if(fsiya<calcSolomon) 
-        result = Math.ceil(fsiya);
-    else
-        result = calcSolomon;
+    var result = calcSolomon;
+    if(result == 0)
+    {
+        //USING 0.26 FORMULA
+        calcSolomon = Math.ceil(1.15*Math.pow(Math.log(3.25*Math.pow(fsiya,2)),.4)*Math.pow(fsiya,.8));
+        if(fsiya<calcSolomon) 
+            result = Math.ceil(fsiya);
+        else
+            result = calcSolomon;
+    }
 
     return !isNaN(result) ? result : '';
 }

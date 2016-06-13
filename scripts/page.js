@@ -4,6 +4,9 @@ $(function(){
     $('#idle_siya').change(idle_mathmagic);
     $('#idle_siya').keyup(idle_mathmagic);
 
+    $('#idle_tp').change(idle_mathmagic);
+    $('#idle_tp').keyup(idle_mathmagic);
+
     $('#hybrid_siya').change(hybrid_mathmagic);
     $('#hybrid_siya').keyup(hybrid_mathmagic);
 
@@ -23,12 +26,13 @@ $(function(){
 
 function idle_mathmagic() {
     var fsiya = parseFloat($('#idle_siya').val());
+    var ftp = parseFloat($('#idle_tp').val());
     
     $('#idle_morg').text(numeral(idle_or_hybrid_morg_calc(fsiya)).format('0,0'));
     
     $('#idle_gold').text(numeral(gold_calc(fsiya)).format('0,0'));
     
-    $('#idle_solomon').text(numeral(idle_solomon_calc(fsiya)).format('0,0'));
+    $('#idle_solomon').text(numeral(idle_solomon_calc(fsiya, ftp)).format('0,0'));
 
 //    $('#idle_iris').val(irisDisplayText(fsiya,1000,302));
 
@@ -252,16 +256,16 @@ function update_active_morg_formula(ffrags) {
         MathJax.Hub.Queue(["Text",formula,"Morgulis = (Frags+13)^2"]);
 }
 
-function update_idle_solomon_formula(fsiya) {
-    var formula = MathJax.Hub.getAllJax("idle_solomon_formula")[0];
+// function update_idle_solomon_formula(fsiya) {
+//     var formula = MathJax.Hub.getAllJax("idle_solomon_formula")[0];
 
-    var calcSolomon = idle_solomon_calc(fsiya);
+//     var calcSolomon = idle_solomon_calc(fsiya);
 
-    if(fsiya==calcSolomon) 
-        MathJax.Hub.Queue(["Text",formula,"Solomon = Siyalatas"])
-    else 
-        MathJax.Hub.Queue(["Text",formula,"Solomon = 1.15 * \ln{(3.25 * Siya^2)}^{0.4} * Siya^{0.8}"]);
-}
+//     if(fsiya==calcSolomon) 
+//         MathJax.Hub.Queue(["Text",formula,"Solomon = Siyalatas"])
+//     else 
+//         MathJax.Hub.Queue(["Text",formula,"Solomon = 1.15 * \ln{(3.25 * Siya^2)}^{0.4} * Siya^{0.8}"]);
+// }
 
 function update_active_solomon_formula(ffrags) {
     var formula = MathJax.Hub.getAllJax("active_solomon_formula")[0];
