@@ -9,7 +9,7 @@ function idle_or_hybrid_morg_calc(fsiya) {
 
     result = Math.ceil(Math.pow(fsiya,2));
 
-    return !isNaN(result) ? result : '';
+    return checkNumber(result);
 }
 
 function active_morg_calc(ffrags) {
@@ -22,7 +22,7 @@ function active_morg_calc(ffrags) {
         result = Math.ceil(Math.pow((ffrags+13),2));
 
 
-    return !isNaN(result) ? result : '';
+    return checkNumber(result);
 }
 
 //idle = Libertas, Mammon, Mimzee
@@ -30,7 +30,55 @@ function active_morg_calc(ffrags) {
 //active = Mammon, Mimzee, Pluto
 function gold_calc(fsiya) {
     result = Math.ceil(fsiya * 0.926);
-    return !isNaN(result) ? result : '';
+    return checkNumber(result);
+}
+
+function idle_bubos_calc(fsiya) {
+    result = 2.8*Math.log(fsiya) - 1.4*Math.log(2.0) - 5.94;
+    return checkNumber(result);
+}
+
+function idle_chronos_calc(fsiya) {
+    result = 2.75*Math.log(fsiya) - 5.1;
+    return checkNumber(result);
+}
+
+function idle_dora_calc(fsiya) {
+    result = 2.877*Math.log(fsiya) - 1.4365*Math.log(1.0/99.0) - 9.63;
+    return checkNumber(result);
+}
+
+function idle_dogcog_calc(fsiya) {
+    result = 2.844*Math.log(fsiya) - 1.422*Math.log(100.0/99.0) - 7.232;
+    return checkNumber(result);
+}
+
+function idle_fortuna_calc(fsiya) {
+    result = 2.875*Math.log(fsiya) - 1.4375*Math.log(1.0/9.0) - 9.3;
+    return checkNumber(result);
+}
+
+function idle_atman_calc(fsiya,ftp,fascendLevel) {
+    result = 2.832*Math.log(fsiya) - 1.416*Math.log(getAlpha(fsiya,ftp,fascendLevel)) - 1.416*Math.log(1.0/3.0) - 6.613;
+    return checkNumber(result);
+}
+
+function idle_kuma_calc(fsiya,ftp,fascendLevel) {
+    result = 2.88*Math.log(fsiya) - 1.44*Math.log(getAlpha(fsiya,ftp,fascendLevel)) - 1.44*Math.log(1.25) - 10.42;
+    return checkNumber(result);
+}
+
+function checkNumber(num) {
+    if(isNaN(num)) 
+        return '';
+    if(num <= 0)
+        return 0;
+    return num;
+}
+
+function getAlpha(fsiya,ftp,fascendLevel) {
+    var hpscale = Math.ceil(fascendLevel/500.0)*0.005 + 1.14;
+    return 1.4067 * Math.log(1+ftp) / Math.log(hpscale);
 }
 
 function idle_solomon_calc(fsiya,ftp,fascendLevel) {
@@ -48,20 +96,17 @@ function idle_solomon_calc(fsiya,ftp,fascendLevel) {
     }
     else
     {
-        //using 1.0 formula
-        var hpscale = Math.ceil(fascendLevel/500.0)*0.005 + 1.14;
-        var alpha = 1.4067 * Math.log(1+ftp) / Math.log(hpscale);
-        result = Math.ceil(Math.pow(fsiya,0.8) * Math.pow(alpha,0.4));
+        result = Math.ceil(Math.pow(fsiya,0.8) * Math.pow(getAlpha(fsiya,ftp,fascendLevel),0.4));
     }
         
-    return !isNaN(result) ? result : '';
+    return checkNumber(result);
 }
 
 function hybrid_solomon_calc(fsiya) {
     //see https://www.reddit.com/r/ClickerHeroes/comments/3h5al8/extending_mathematical_analysis_to_hybrid_and/
     calcSolomon = Math.ceil(1.32*Math.pow(Math.log(4.65*Math.pow(fsiya,2)),.4)*Math.pow(fsiya,.8));
 
-    return !isNaN(calcSolomon) ? calcSolomon : '';
+    return checkNumber(calcSolomon);
 }
 
 function active_solomon_calc(ffrags) {
@@ -73,7 +118,7 @@ function active_solomon_calc(ffrags) {
     else 
         result = calcSolomon;
 
-    return !isNaN(result) ? result : '';
+    return checkNumber(result);
 }
 
 function active_bhaal_calc(ffrags) {
@@ -82,29 +127,29 @@ function active_bhaal_calc(ffrags) {
     else
         result=ffrags-90;
 
-    return !isNaN(result) ? result : '';
+    return checkNumber(result);
 }
 
 function iris_calc(fsiya,flevels) {
     result = Math.ceil((371 * Math.log(fsiya)) - 1075 - flevels);
     result = Math.max(5*Math.round(result/5) - 2,0);
     result = result >=98 ? result : 0;
-    return !isNaN(result) ? result : '';
+    return checkNumber(result);
 }
 
 //hybrid bhaal, frag, pluto
 function hybrid_click_calc(fsiya) {
     result = Math.ceil(fsiya * 0.5);
-    return !isNaN(result) ? result : '';
+    return checkNumber(result);
 }
 
 function hybrid_jugg_calc(fsiya) {
     result = Math.ceil(Math.pow(fsiya * 0.5, 0.8));
-    return !isNaN(result) ? result : '';
+    return checkNumber(result);
 }
 
 function active_jugg_calc(ffrags) {
     result = Math.ceil(Math.pow(ffrags, 0.8));
-    return !isNaN(result) ? result : '';
+    return checkNumber(result);
 }
 

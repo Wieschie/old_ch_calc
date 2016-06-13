@@ -33,10 +33,26 @@ function idle_mathmagic() {
     var fzone = parseInt($('#zoneInput').val());
     
     $('#idle_morg').text(numeral(idle_or_hybrid_morg_calc(fsiya)).format('0,0'));
-    
-    $('#idle_gold').text(numeral(gold_calc(fsiya)).format('0,0'));
-    
     $('#idle_solomon').text(numeral(idle_solomon_calc(fsiya, ftp, fzone)).format('0,0'));
+
+    $('#idle_bubos').text(numeral(idle_bubos_calc(fsiya)).format('0,0'));
+    $('#idle_chronos').text(numeral(idle_chronos_calc(fsiya)).format('0,0'));
+    $('#idle_gold').text(numeral(gold_calc(fsiya)).format('0,0'));
+    $('#idle_dora').text(numeral(idle_dora_calc(fsiya)).format('0,0'));
+    $('#idle_dogcog').text(numeral(idle_dogcog_calc(fsiya)).format('0,0'));
+    $('#idle_fortuna').text(numeral(idle_fortuna_calc(fsiya)).format('0,0'));
+
+    if( ftp >0 )
+    {
+        $('#idle_atman').text(numeral(idle_atman_calc(fsiya, ftp, fzone)).format('0,0'));
+        $('#idle_kuma').text(numeral(idle_kuma_calc(fsiya, ftp, fzone)).format('0,0'));
+    }
+    else
+    {
+        $('#idle_atman').text("tbd");
+        $('#idle_kuma').text("tbd");
+    }
+        
 
 //    $('#idle_iris').val(irisDisplayText(fsiya,1000,302));
 

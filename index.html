@@ -96,22 +96,67 @@
           </div>
           
           <div class="flex">
+            <label>Bubos:</label> 
+            <div class="resultvalue" id="idle_bubos">0</div>
+          </div>
+
+          <div class="flex">
+            <label>Chronos:</label> 
+            <div class="resultvalue" id="idle_chronos">0</div>
+          </div>
+
+          <div class="flex">
             <label>Libertas, Mammon, Mimzee:</label> 
             <div class="resultvalue" id="idle_gold">0</div>
           </div>
+
+          <div class="flex">
+            <label>Dora:</label> 
+            <div class="resultvalue" id="idle_dora">0</div>
+          </div>
+
+          <div class="flex">
+            <label>Dogcog:</label> 
+            <div class="resultvalue" id="idle_dogcog">0</div>
+          </div>
+
+          <div class="flex">
+            <label>Fortuna:</label> 
+            <div class="resultvalue" id="idle_fortuna">0</div>
+          </div>
+
+          <div class="flex">
+            <label>Atman:</label> 
+            <div class="resultvalue" id="idle_atman">0</div>
+          </div>
+
+          <div class="flex">
+            <label>Kuma:</label> 
+            <div class="resultvalue" id="idle_kuma">0</div>
+          </div>
+
           
           <div class='formulas' id='idle_formulas'>
             $$Argaiv = Siya$$
-            <div id='idle_morg_formula'>
-              $$Morgulis = Siya^2$$
-            </div>
-            $$Libertas\ Mammon\ Mimzee = .926 * Siya$$
             <div id='idle_solomon_formula'>
               $$Solomon[TP>0] = Siya^{0.8} * Alpha^{0.4}$$
               $$Alpha = 1.4067*ln(1+TP)/ln(\left\lceil \frac{AcensionZone}{500.0} * 0.005 \right\rceil + 1.14)$$
               
               $$Solomon[TP==0] = Minimum( Siya, 1.15 * \ln{(3.25 * Siya^2)}^{0.4} * Siya^{0.8} )$$
             </div>
+            <div id='idle_morg_formula'>
+              $$Morgulis = Siya^2$$
+            </div>
+            
+            $$Bubos(simple) = 2.8*ln(Siya) - 1.4*ln(2) - 5.94$$ 
+            $$Chronos(simple) = 2.75*ln(Siya) - 5.1$$
+            $$Libertas\ Mammon\ Mimzee = .926 * Siya$$
+            $$Dora(simple) = 2.877*ln(Siya) - 1.4365·ln(\frac{1}{99}) - 9.63$$
+            $$Dogcog(simple) = 2.844·ln(Siya) - 1.422·ln(\frac{100}{99}) - 7.232$$
+            $$Fortuna(simple) = 2.875·ln(Siya) - 1.4375·ln(\frac{1}{9}) - 9.3$$
+            $$Atman[TP>0](simple) = 2.832*ln(Siya) - 1.416*ln(alpha) -1.416*ln(\frac{1}{3}) - 6.613$$
+            $$Kuma[TP>0](simple) = 2.88*ln(Siya) - 1.44*ln(alpha) - 1.44*ln(1.25) - 10.42$$
+
           </div>
 
           <button onclick='show_math()' id="idle_formula_button">Show Formulas</button><br>
