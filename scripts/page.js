@@ -4,6 +4,12 @@ $(function(){
     $('#idle_siya').change(idle_mathmagic);
     $('#idle_siya').keyup(idle_mathmagic);
 
+    $('#idle_tp').change(idle_mathmagic);
+    $('#idle_tp').keyup(idle_mathmagic);
+
+    $('#zoneInput').change(idle_mathmagic);
+    $('#zoneInput').keyup(idle_mathmagic);
+
     $('#hybrid_siya').change(hybrid_mathmagic);
     $('#hybrid_siya').keyup(hybrid_mathmagic);
 
@@ -23,18 +29,36 @@ $(function(){
 
 function idle_mathmagic() {
     var fsiya = parseFloat($('#idle_siya').val());
+    var ftp = parseFloat($('#idle_tp').val());
+    var fzone = parseInt($('#zoneInput').val());
     
-    $('#idle_morg').val(numeral(idle_or_hybrid_morg_calc(fsiya)).format('0,0'));
-    
-    $('#idle_gold').val(numeral(gold_calc(fsiya)).format('0,0'));
-    
-    $('#idle_solomon').val(numeral(idle_solomon_calc(fsiya)).format('0,0'));
+    $('#idle_morg').text(numeral(idle_or_hybrid_morg_calc(fsiya)).format('0,0'));
+    $('#idle_solomon').text(numeral(idle_solomon_calc(fsiya, ftp, fzone)).format('0,0'));
 
-    $('#idle_iris').val(irisDisplayText(fsiya,1000,302));
+    $('#idle_bubos').text(numeral(idle_bubos_calc(fsiya)).format('0,0'));
+    $('#idle_chronos').text(numeral(idle_chronos_calc(fsiya)).format('0,0'));
+    $('#idle_gold').text(numeral(gold_calc(fsiya)).format('0,0'));
+    $('#idle_dora').text(numeral(idle_dora_calc(fsiya)).format('0,0'));
+    $('#idle_dogcog').text(numeral(idle_dogcog_calc(fsiya)).format('0,0'));
+    $('#idle_fortuna').text(numeral(idle_fortuna_calc(fsiya)).format('0,0'));
+
+    if( ftp >0 )
+    {
+        $('#idle_atman').text(numeral(idle_atman_calc(fsiya, ftp, fzone)).format('0,0'));
+        $('#idle_kuma').text(numeral(idle_kuma_calc(fsiya, ftp, fzone)).format('0,0'));
+    }
+    else
+    {
+        $('#idle_atman').text("tbd");
+        $('#idle_kuma').text("tbd");
+    }
+        
+
+//    $('#idle_iris').val(irisDisplayText(fsiya,1000,302));
 
     //update formulas;
-    update_idle_or_hybrid_morg_formula(fsiya);
-    update_idle_solomon_formula(fsiya);
+//    update_idle_or_hybrid_morg_formula(fsiya);
+//    update_idle_solomon_formula(fsiya);
 }
 
 function hybrid_mathmagic() {
@@ -180,28 +204,45 @@ function import_save() {
         // has Siyalatas == 5
         idle_siya.value = data.ancients.ancients[5].level;
         idle_mathmagic();
-        hybrid_siya.value = data.ancients.ancients[5].level;
-        hybrid_mathmagic();
+//        hybrid_siya.value = data.ancients.ancients[5].level;
+//        hybrid_mathmagic();
+        zoneInput.value = data.highestFinishedZone;
+        idle_mathmagic;
     }
     else if(data.ancients.ancients.hasOwnProperty(28))      {
         // has Argaiv
         idle_siya.value = data.ancients.ancients[28].level;
         idle_mathmagic();
-        hybrid_siya.value = data.ancients.ancients[28].level;
-        hybrid_mathmagic();
+//        hybrid_siya.value = data.ancients.ancients[28].level;
+//        hybrid_mathmagic();
+        zoneInput.value = data.highestFinishedZone;
+        idle_mathmagic;
+    }
+
+
+    //3 is phan = tp boost
+    if( data.outsiders && data.outsiders.outsiders.hasOwnProperty(3) ) {
+        var phanLevel = data.outsiders.outsiders[3].level;
+        var totalAS = data.ancientSoulsTotal;
+        
+        if(totalAS > 0)
+            idle_tp.value = 1 + 49*(1 - Math.pow(Math.E,(-0.0001*totalAS))) + 50*(1 - Math.pow(Math.E,(-0.001*phanLevel)));
+        else
+            idle_tp.value = 0;
+        idle_mathmagic;
     }
 
     //active
-    if(data.ancients.ancients.hasOwnProperty(19))    {
-        // has frags == 19
-        active_frags.value = data.ancients.ancients[19].level;
-        active_mathmagic();
-    }
-    else if(data.ancients.ancients.hasOwnProperty(28))      {
-        // has Argaiv
-        active_frags.value = data.ancients.ancients[28].level;
-        active_mathmagic();
-    }
+    // if(data.ancients.ancients.hasOwnProperty(19))    {
+    //     // has frags == 19
+    //     active_frags.value = data.ancients.ancients[19].level;
+    //     active_mathmagic();
+    // }
+    // else if(data.ancients.ancients.hasOwnProperty(28))      {
+    //     // has Argaiv
+    //     active_frags.value = data.ancients.ancients[28].level;
+    //     active_mathmagic();
+    // }
 }
 
 function show_math() {
@@ -252,16 +293,16 @@ function update_active_morg_formula(ffrags) {
         MathJax.Hub.Queue(["Text",formula,"Morgulis = (Frags+13)^2"]);
 }
 
-function update_idle_solomon_formula(fsiya) {
-    var formula = MathJax.Hub.getAllJax("idle_solomon_formula")[0];
+// function update_idle_solomon_formula(fsiya) {
+//     var formula = MathJax.Hub.getAllJax("idle_solomon_formula")[0];
 
-    var calcSolomon = idle_solomon_calc(fsiya);
+//     var calcSolomon = idle_solomon_calc(fsiya);
 
-    if(fsiya==calcSolomon) 
-        MathJax.Hub.Queue(["Text",formula,"Solomon = Siyalatas"])
-    else 
-        MathJax.Hub.Queue(["Text",formula,"Solomon = 1.15 * \ln{(3.25 * Siya^2)}^{0.4} * Siya^{0.8}"]);
-}
+//     if(fsiya==calcSolomon) 
+//         MathJax.Hub.Queue(["Text",formula,"Solomon = Siyalatas"])
+//     else 
+//         MathJax.Hub.Queue(["Text",formula,"Solomon = 1.15 * \ln{(3.25 * Siya^2)}^{0.4} * Siya^{0.8}"]);
+// }
 
 function update_active_solomon_formula(ffrags) {
     var formula = MathJax.Hub.getAllJax("active_solomon_formula")[0];
