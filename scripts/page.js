@@ -7,6 +7,9 @@ $(function(){
     $('#idle_tp').change(idle_mathmagic);
     $('#idle_tp').keyup(idle_mathmagic);
 
+    $('#zoneInput').change(idle_mathmagic);
+    $('#zoneInput').keyup(idle_mathmagic);
+
     $('#hybrid_siya').change(hybrid_mathmagic);
     $('#hybrid_siya').keyup(hybrid_mathmagic);
 
@@ -27,14 +30,13 @@ $(function(){
 function idle_mathmagic() {
     var fsiya = parseFloat($('#idle_siya').val());
     var ftp = parseFloat($('#idle_tp').val());
+    var fzone = parseInt($('#zoneInput').val());
     
     $('#idle_morg').text(numeral(idle_or_hybrid_morg_calc(fsiya)).format('0,0'));
     
     $('#idle_gold').text(numeral(gold_calc(fsiya)).format('0,0'));
     
-    $('#idle_solomon').text(numeral(idle_solomon_calc(fsiya, ftp,400)).format('0,0'));
-    $('#idle_solomon2').text(numeral(idle_solomon_calc(fsiya, ftp,900)).format('0,0'));
-    $('#idle_solomon3').text(numeral(idle_solomon_calc(fsiya, ftp,1400)).format('0,0'));
+    $('#idle_solomon').text(numeral(idle_solomon_calc(fsiya, ftp, fzone)).format('0,0'));
 
 //    $('#idle_iris').val(irisDisplayText(fsiya,1000,302));
 

@@ -77,42 +77,29 @@
         <div id="idle_accordion">
           <div class="flex">
             <label>Siyalatas, Argaiv:</label>
-            <input type="number" name="idle_siya" id="idle_siya" value="0" autofocus>
+            <input class="calcinput" type="number" name="idle_siya" id="idle_siya" value="0" autofocus>
           </div>
           
           <div class="flex">
-             <label><a onclick="void(0)" onmouseover="nhpup.popup('Transcendent Power (TP) is found on the Outsiders tab.  It is 0 if you have not yet transcended.');"><label>Transcendent Power</a>:</label>
-            <input type="number" name="idle_tp" id="idle_tp" value="0">
+             <label><a onclick="void(0)" onmouseover="nhpup.popup('Transcendent Power (TP) is found on the Outsiders tab.  It is 0 if you have not yet transcended.');"><label>Transcendent Power <div class="sublabel">(1.35% = 1.35)</div></a>:</label>
+            <input class="calcinput" type="number" name="idle_tp" id="idle_tp" value="0">
+          </div>
+
+          <div class="flex">
+            <label>Solomon <div class="sublabel">(Ascension Zone &lt; <input id="zoneInput" type="number" step="500" value="1500">)</div>:</label>
+            <div class="resultvalue" id="idle_solomon">0</div>
           </div>
           
           <div class="flex">
             <label>Morgulis:</label>
             <div class="resultvalue" id="idle_morg">0</div>
-<!--            <input type="text" name="idle_morg" id="idle_morg" value="0" readonly> -->
           </div>
           
           <div class="flex">
             <label>Libertas, Mammon, Mimzee:</label> 
             <div class="resultvalue" id="idle_gold">0</div>
-            <!-- <input type="text" name="idle_gold" id="idle_gold" value="0" readonly> -->
           </div>
           
-          <div class="flex">
-            <label>Solomon:</label>
-            <div class="resultvalue" id="idle_solomon">0</div>
-          </div>
-          
-          <div class="flex">
-            <label>Solomon:</label>
-            <div class="resultvalue" id="idle_solomon2">0</div>
-          </div>
-          
-          <div class="flex">
-            <label>Solomon:</label>
-            <div class="resultvalue" id="idle_solomon3">0</div>
-          </div>
-          
-          <!-- These formulas are the default, first visible formulas.  They may get updated during calculations -->
           <div class='formulas' id='idle_formulas'>
             $$Argaiv = Siya$$
             <div id='idle_morg_formula'>
@@ -121,9 +108,9 @@
             $$Libertas\ Mammon\ Mimzee = .926 * Siya$$
             <div id='idle_solomon_formula'>
               $$Solomon[TP>0] = Siya^{0.8} * Alpha^{0.4}$$
-              $$Alpha = 1.4067*ln(1+TP)/ln(HPscale)$$
+              $$Alpha = 1.4067*ln(1+TP)/ln(\left\lceil \frac{AcensionZone}{500.0} * 0.005 \right\rceil + 1.14)$$
               
-              <a onclick="void(0)" onmouseover="nhpup.popup('Using 0.26 ROT until new equation determined.');">$$Solomon[TP==0] = Minimum( Siya, 1.15 * \ln{(3.25 * Siya^2)}^{0.4} * Siya^{0.8} )$$</a>
+              $$Solomon[TP==0] = Minimum( Siya, 1.15 * \ln{(3.25 * Siya^2)}^{0.4} * Siya^{0.8} )$$
             </div>
           </div>
 

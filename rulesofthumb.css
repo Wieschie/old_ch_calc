@@ -31,6 +31,15 @@ label{
     margin: 2px;
 }
 
+.sublabel {
+    display: inline-block;
+    font: 13px Arial, sans-serif;
+}
+
+#zoneInput {
+    width: 50px;
+}
+
 .resultvalue {
     border-style: solid;
     border-width: 1px;
@@ -45,7 +54,7 @@ label{
     }
 }
 
-input {
+.calcinput {
     display: inline-block;
     width: 200px;
     font: 20px Arial, sans-serif;
