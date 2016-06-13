@@ -33,14 +33,10 @@ function gold_calc(fsiya) {
     return !isNaN(result) ? result : '';
 }
 
-function idle_solomon_calc(fsiya,ftp) {
+function idle_solomon_calc(fsiya,ftp,fascendLevel) {
 
-    var hpscale = 1.145; //first level
-    var alpha = 1.4067 * Math.log(1+ftp) / Math.log(hpscale);
-    var calcSolomon = Math.ceil(Math.pow(fsiya,0.8) * Math.pow(alpha,0.4));
-
-    var result = calcSolomon;
-    if(result == 0)
+    var result = 0;
+    if(ftp==0)
     {
         //USING 0.26 FORMULA
         calcSolomon = Math.ceil(1.15*Math.pow(Math.log(3.25*Math.pow(fsiya,2)),.4)*Math.pow(fsiya,.8));
@@ -48,8 +44,16 @@ function idle_solomon_calc(fsiya,ftp) {
             result = Math.ceil(fsiya);
         else
             result = calcSolomon;
-    }
 
+    }
+    else
+    {
+        //using 1.0 formula
+        var hpscale = Math.ceil(fascendLevel/500.0)*0.005 + 1.14;
+        var alpha = 1.4067 * Math.log(1+ftp) / Math.log(hpscale);
+        result = Math.ceil(Math.pow(fsiya,0.8) * Math.pow(alpha,0.4));
+    }
+        
     return !isNaN(result) ? result : '';
 }
 

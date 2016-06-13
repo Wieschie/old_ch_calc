@@ -32,7 +32,9 @@ function idle_mathmagic() {
     
     $('#idle_gold').text(numeral(gold_calc(fsiya)).format('0,0'));
     
-    $('#idle_solomon').text(numeral(idle_solomon_calc(fsiya, ftp)).format('0,0'));
+    $('#idle_solomon').text(numeral(idle_solomon_calc(fsiya, ftp,400)).format('0,0'));
+    $('#idle_solomon2').text(numeral(idle_solomon_calc(fsiya, ftp,900)).format('0,0'));
+    $('#idle_solomon3').text(numeral(idle_solomon_calc(fsiya, ftp,1400)).format('0,0'));
 
 //    $('#idle_iris').val(irisDisplayText(fsiya,1000,302));
 
