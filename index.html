@@ -73,7 +73,7 @@
       
       <div id="accordion">
         <!-- ************** IDLE BUILDS ACCORDION ************** -->
-        <h3>Idle Builds - Enter your Siyalatas Level</h3>
+        <h3>Rules of Thumb 1.0 - Enter your Siyalatas Level</h3>
         <div id="idle_accordion">
           <div class="flex">
             <label>Siyalatas, Argaiv:</label>
@@ -91,27 +91,21 @@
           </div>
           
           <div class="flex">
-            <label>Solomon:</label>
+            <label>Solomon (<font color="red">Wrong</font>):</label>
             <input type="text" name="idle_solomon" id="idle_solomon" value="0" readonly>
-          </div>
-          
-          <div class="flex">
-            <label>Iris Range <a onclick="void(0)" onmouseover="nhpup.popup('Iris value depends largely on play style and preference.');">(<u>?</u>)</a>:</label> 
-            <input type="text" name="idle_iris" id="idle_iris" value="0" readonly>
           </div>
           
           <!-- These formulas are the default, first visible formulas.  They may get updated during calculations -->
           <div class='formulas' id='idle_formulas'>
+            $$Argaiv = Siya$$
             <div id='idle_morg_formula'>
-              $$Morgulis = (Siya+1)^2$$
+              $$Morgulis = Siya^2$$
             </div>
-            $$Libertas\ Mammon\ Mimzee = .927 * Siya$$
+            $$Libertas\ Mammon\ Mimzee = .926 * Siya$$
             <div id='idle_solomon_formula'>
-              $$Solomon = Minimum( Siya, 1.15 * \ln{(3.25 * Siya^2)}^{0.4} * Siya^{0.8} )$$
+              $$Solomon = Siya^{0.8} * Alpha^{0.4}$$
+              $$Alpha = 1.4067*ln(1+TP)/ln(HPscale)$$
             </div>
-            <a onclick="void(0)" onmouseover="nhpup.popup('This calculates a rough optimal zone, then subtracts 1000 for the lower bound and 302 for the upper bound and rounds both to the nearest 3 or 8.');">
-              $$Iris Lower Bound = 5*\lfloor\frac{371 * \ln({Siya}) - 1075 - 1000}{5}\rfloor - 2$$
-              $$Iris Upper Bound = 5*\lfloor\frac{371 * \ln({Siya}) - 1075 - 302}{5}\rfloor - 2$$</a>
           </div>
 
           <button onclick='show_math()' id="idle_formula_button">Show Formulas</button><br>
@@ -120,6 +114,7 @@
 
 
         <!-- ************** HYBRID BUILDS ACCORDION ************** -->
+<!--
         <h3>Hybrid Builds - Enter your Siyalatas Level</h3>
         <div id="hybrid_accordion">
           <div class="flex">
@@ -156,8 +151,9 @@
             <label>Iris Range <a onclick="void(0)" onmouseover="nhpup.popup('Iris value depends largely on play style and preference.');">(<u>?</u>)</a>:</label> 
             <input type="text" name="hybrid_iris" id="hybrid_iris" value="0" readonly>
           </div>
-          
+-->          
           <!-- These formulas are the default, first visible formulas.  They may get updated during calculations -->
+<!--
           <div class='formulas' id='hybrid_formulas'>
             <div id='hybrid_morg_formula'>
               $$Morgulis = (Siya+1)^2$$
@@ -175,8 +171,10 @@
           
           <button onclick='show_math()' id="hybrid_formula_button">Show Formulas</button><br>
         </div>
-        
+        -->
+
         <!-- ************** ACTIVE BUILDS ACCORDION ************** -->        
+<!--
         <h3>Active Builds - Enter your Fragsworth Level</h3>
         <div id="active_accordion">
           <div class="flex">
@@ -208,14 +206,9 @@
             <label>Solomon:</label>
             <input type="text" name="active_solomon" id="active_solomon" value="0" readonly>
           </div>
-          
-<!--  I don't have an active calculation for Iris yet.   Created Issue #13
-          <div class="flex">
-            <label>Iris Range <a onclick="void(0)" onmouseover="nhpup.popup('Iris value depends largely on play style and preference.');">(<u>?</u>)</a>:</label> 
-            <input type="text" name="active_iris" id="active_iris" value="0" readonly>
-          </div>
 -->          
           <!-- These formulas are the default, first visible formulas.  They may get updated during calculations -->
+<!--
           <div class='formulas' id='active_formulas'>
             <div id='active_bhaal_formula'>$$Bhaal = Frags$$</div>
             $$Juggernaut = Frags^{0.8}$$
@@ -224,23 +217,19 @@
             <div id='active_solomon_formula'>
               $$Solomon = Minimum( Frags, 1.21 * \ln{(3.73 * Frags^2)}^{0.4} * Frags^{0.8} )$$
             </div>
-<!--  I don't have an active calculation for Iris yet.   Created Issue #13
-            <a onclick="void(0)" onmouseover="nhpup.popup('This calculates a rough optimal zone, then subtracts 1000 for the lower bound and 302 for the upper bound and rounds both to the nearest 3 or 8.');">
-              $$Iris Lower Bound = 5*\lfloor\frac{371 * \ln({Siya}) - 1075 - 1000}{5}\rfloor - 2$$
-              $$Iris Upper Bound = 5*\lfloor\frac{371 * \ln({Siya}) - 1075 - 302}{5}\rfloor - 2$$</a>
-          -->
           </div>
           <button onclick='show_math()' id="active_formula_button">Show Formulas</button><br>
         </div>
+-->
 
         <!-- ************** HOWTO ACCORDION ************** -->        
         <h3><div class="newthing">How to use this calculator</div><div class="newpic hideafter"><img src="images/new.png" alt="New!"></div></h3>
         <div id="howto_accordion">
           <b>Q: Why use a calculator at all?</b>
           <p></p>
-          When leveling ancients in the game of Clicker Heroes, there are more efficient and less efficent ways to spend Hero Souls on upgrading Ancients.   Clicker Heroes calculators are designed to help you level your ancients in a more efficient way.    This calculator uses these <a href="https://www.reddit.com/r/ClickerHeroes/comments/3y57jd/updated_rules_of_thumb/">Rules of Thumb formulas</a>.
+          When leveling ancients in the game of Clicker Heroes, there are more efficient and less efficent ways to spend Hero Souls on upgrading Ancients.   Clicker Heroes calculators are designed to help you level your ancients in a more efficient way.    This calculator uses these <a href="https://www.reddit.com/r/ClickerHeroes/comments/4naohc/math_and_transcendance/">formulas</a>.
           <p></p>
-          This calculator is also simple to use because you only have to enter one value for Siyalatas or Fragsworth to know how you should optimally level the ancients.  This is usually easier to use for mobile Clicker Heroes on Android or iPhone/iOS.
+          This calculator is also simple to use because you only have to enter one value for Siyalatas to know how you should optimally level the ancients.  This is usually easier to use for mobile Clicker Heroes on Android or iPhone/iOS.
           
           <hr>
           
@@ -248,13 +237,13 @@
           <p></p>
           Step by step do the following:
           <ol>
-            <li> Enter your Siyalatas value for Idle or Hybrid Builds.   Enter your Fragsworth value for Active Builds.
+            <li> Enter your Siyalatas value.
             <li> Raise the ancients to the levels in the calculator for all other Ancients
             <li> Press "+100" (or other button of your choice)
             <li> Go to step 2.
           </ol>
           
-          You can level up by +10, +100, +10%, or even enter in any number you'd like in to the Siyalatas or Fragsworth field.  If you regularly follow this pattern, you'll never be far from an optimal Ancient level.
+          You can level up by +10, +100, +10%, or even enter in any number you'd like in to the Siyalatas field.  If you regularly follow this pattern, you'll never be far from an optimal Ancient level.
         </div>
 
       </div>

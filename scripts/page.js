@@ -30,11 +30,11 @@ function idle_mathmagic() {
     
     $('#idle_solomon').val(numeral(idle_solomon_calc(fsiya)).format('0,0'));
 
-    $('#idle_iris').val(irisDisplayText(fsiya,1000,302));
+//    $('#idle_iris').val(irisDisplayText(fsiya,1000,302));
 
     //update formulas;
-    update_idle_or_hybrid_morg_formula(fsiya);
-    update_idle_solomon_formula(fsiya);
+//    update_idle_or_hybrid_morg_formula(fsiya);
+//    update_idle_solomon_formula(fsiya);
 }
 
 function hybrid_mathmagic() {
@@ -180,28 +180,28 @@ function import_save() {
         // has Siyalatas == 5
         idle_siya.value = data.ancients.ancients[5].level;
         idle_mathmagic();
-        hybrid_siya.value = data.ancients.ancients[5].level;
-        hybrid_mathmagic();
+//        hybrid_siya.value = data.ancients.ancients[5].level;
+//        hybrid_mathmagic();
     }
     else if(data.ancients.ancients.hasOwnProperty(28))      {
         // has Argaiv
         idle_siya.value = data.ancients.ancients[28].level;
         idle_mathmagic();
-        hybrid_siya.value = data.ancients.ancients[28].level;
-        hybrid_mathmagic();
+//        hybrid_siya.value = data.ancients.ancients[28].level;
+//        hybrid_mathmagic();
     }
 
     //active
-    if(data.ancients.ancients.hasOwnProperty(19))    {
-        // has frags == 19
-        active_frags.value = data.ancients.ancients[19].level;
-        active_mathmagic();
-    }
-    else if(data.ancients.ancients.hasOwnProperty(28))      {
-        // has Argaiv
-        active_frags.value = data.ancients.ancients[28].level;
-        active_mathmagic();
-    }
+    // if(data.ancients.ancients.hasOwnProperty(19))    {
+    //     // has frags == 19
+    //     active_frags.value = data.ancients.ancients[19].level;
+    //     active_mathmagic();
+    // }
+    // else if(data.ancients.ancients.hasOwnProperty(28))      {
+    //     // has Argaiv
+    //     active_frags.value = data.ancients.ancients[28].level;
+    //     active_mathmagic();
+    // }
 }
 
 function show_math() {

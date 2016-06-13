@@ -7,11 +7,8 @@ function idle_or_hybrid_morg_calc(fsiya) {
     if(fsiya==0)
         return 0;
 
-    if(fsiya<100)
-        result = Math.ceil(Math.pow((fsiya+1),2));
-    else
-        result = Math.ceil(Math.pow((fsiya+22),2));
-    
+    result = Math.ceil(Math.pow(fsiya,2));
+
     return !isNaN(result) ? result : '';
 }
 
@@ -32,7 +29,7 @@ function active_morg_calc(ffrags) {
 //hybrid = Libertas, Mammon, Mimzee
 //active = Mammon, Mimzee, Pluto
 function gold_calc(fsiya) {
-    result = Math.ceil(fsiya * 0.927);
+    result = Math.ceil(fsiya * 0.926);
     return !isNaN(result) ? result : '';
 }
 
