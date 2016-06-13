@@ -206,6 +206,8 @@ function import_save() {
         idle_mathmagic();
 //        hybrid_siya.value = data.ancients.ancients[5].level;
 //        hybrid_mathmagic();
+        zoneInput.value = data.highestFinishedZone;
+        idle_mathmagic;
     }
     else if(data.ancients.ancients.hasOwnProperty(28))      {
         // has Argaiv
@@ -213,7 +215,10 @@ function import_save() {
         idle_mathmagic();
 //        hybrid_siya.value = data.ancients.ancients[28].level;
 //        hybrid_mathmagic();
+        zoneInput.value = data.highestFinishedZone;
+        idle_mathmagic;
     }
+
 
     //active
     // if(data.ancients.ancients.hasOwnProperty(19))    {
