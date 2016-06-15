@@ -25,7 +25,16 @@ $(function(){
         //It's after "end" date
         $('.hideafter').each(function(index,obj) { $(obj).hide(); });
     }
+
+    $("#idle_tp").keypress( function(e) {
+        var chr = String.fromCharCode(e.which);
+        if ("1234567890.".indexOf(chr) < 0)
+            return false;
+    });
+
 });
+
+
 
 function idle_mathmagic() {
     var fsiya = parseFloat($('#idle_siya').val());

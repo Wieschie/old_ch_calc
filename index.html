@@ -82,11 +82,11 @@
           
           <div class="flex">
              <label><a onclick="void(0)" onmouseover="nhpup.popup('Transcendent Power (TP) is found on the Outsiders tab.  It is 0 if you have not yet transcended.');"><label>Transcendent Power <div class="sublabel">(1.35% = 1.35)</div></a>:</label>
-            <input class="calcinput" type="number" name="idle_tp" id="idle_tp" value="0" step="0.01">
+            <input class="calcinput" type="text" pattern="[0-9]\." name="idle_tp" id="idle_tp" value="0.00" step="0.01">
           </div>
 
           <div class="flex">
-            <label>Solomon <div class="sublabel">(Ascension Zone &lt; <input id="zoneInput" class="calcinput" name="zoneInput" type="number" step="500" value="1500">)</div>:</label>
+            <label>Solomon <div class="sublabel">(Ascension Zone &le; <input id="zoneInput" class="calcinput" name="zoneInput" type="number" step="500" value="1500">)</div>:</label>
             <div class="resultvalue" id="idle_solomon">0</div>
           </div>
           
