@@ -78,7 +78,7 @@ function checkNumber(num) {
 
 function getAlpha(fsiya,ftp,fascendLevel) {
     var hpscale = Math.ceil(fascendLevel/500.0)*0.005 + 1.14;
-    return 1.4067 * Math.log(1+ftp) / Math.log(hpscale);
+    return 1.4067 * Math.log(1.0+ftp/100.0) / Math.log(hpscale);
 }
 
 function idle_solomon_calc(fsiya,ftp,fascendLevel) {
@@ -96,7 +96,7 @@ function idle_solomon_calc(fsiya,ftp,fascendLevel) {
     }
     else
     {
-        result = Math.ceil(Math.pow(fsiya,0.8) * Math.pow(getAlpha(fsiya,ftp,fascendLevel),0.4));
+        result = Math.ceil(Math.pow(fsiya,0.8) / Math.pow(getAlpha(fsiya,ftp,fascendLevel),0.4));
     }
         
     return checkNumber(result);
