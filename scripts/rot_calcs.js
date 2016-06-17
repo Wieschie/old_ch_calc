@@ -64,7 +64,7 @@ function idle_atman_calc(fsiya,ftp,fascendLevel) {
 }
 
 function idle_kuma_calc(fsiya,ftp,fascendLevel) {
-    result = 2.88*Math.log(fsiya) - 1.44*Math.log(getAlpha(fsiya,ftp,fascendLevel)) - 1.44*Math.log(1.25) - 10.42;
+    result = 2.844*Math.log(fsiya) - 1.422*Math.log(getAlpha(fsiya,ftp,fascendLevel)) - 1.422*Math.log(1.25) - 7.014;
     return checkNumber(result);
 }
 
